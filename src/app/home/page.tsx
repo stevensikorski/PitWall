@@ -1,13 +1,17 @@
 import { Metadata } from "next";
+import { Page } from "@/components/containers/Page";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
-      <p>Hi</p>
-    </main>
+    <Page>
+      <h1>Title Heading</h1>
+      <h2>Heading</h2>
+      <h3>Subheading</h3>
+      <p>Paragraph</p>
+    </Page>
   );
 }
