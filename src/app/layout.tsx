@@ -5,6 +5,7 @@ export { viewport } from "@/lib/viewport";
 
 import "@/styles/globals.css";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -13,9 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-neutral-950 overflow-x-hidden ${GeistSans.className}`}>
+      <body className={`bg-neutral-950 ${GeistSans.className}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

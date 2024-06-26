@@ -1,24 +1,11 @@
-"use client";
-import { Metadata } from "next";
-import Link from "next/link";
 import { Page } from "@/components/containers/Page";
-
-export const metadata: Metadata = {
-  title: "404",
-};
 
 export default function NotFound() {
   return (
     <Page>
-      <div className="h-[50vh] w-full flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-14vh)] desktop:h-[calc(100vh-24vh)] w-full">
         <h2>404 Page Not Found</h2>
-        <p className="mt-2">
-          Why not head back{" "}
-          <Link href={"/"} className="text-blue-600 underline">
-            home
-          </Link>
-          ?
-        </p>
+        <p className="mt-2">The page you are looking for does not exist.</p>
       </div>
     </Page>
   );

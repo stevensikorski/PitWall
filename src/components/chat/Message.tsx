@@ -16,18 +16,18 @@ export const Message = () => {
   };
 
   return (
-    <form className="h-auto w-full p-2 desktop:my-4 fixed bottom-0 desktop:rounded-lg border-t desktop:border border-neutral-800 mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
-      <div className="flex justify-between items-center">
+    <form className="h-auto w-full p-2 desktop:mb-4 flex flex-col justify-between bg-neutral-950 border-t desktop:border border-neutral-800 desktop:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
+      <div className="h-10 flex justify-center items-center">
         <NewButton />
         <div className="relative flex-grow">
-          <input placeholder="Message the PitWall..." className="h-10 w-full p-2 pl-3 pr-16 resize-none overflow-hidden outline-none text-sm rounded-lg bg-black text-neutral-400 placeholder-neutral-700 border border-neutral-800" value={inputValue} onChange={handleChange} />
+          <input placeholder="Ask a question for the PitWall..." className="h-10 w-full p-2 pl-3 pr-16 overflow-hidden outline-none text-sm rounded bg-neutral-950 text-neutral-400 placeholder-neutral-700 border border-neutral-800" onChange={handleChange} value={inputValue} />
           <div className="absolute top-0 right-0 h-10 flex items-center pr-3 text-xs text-neutral-700">
             {inputValue.length}/{maxCharacters}
           </div>
         </div>
         <SubmitButton />
       </div>
-      <p className="text-xs text-neutral-700 mt-2 flex justify-center items-center">PitWall is prone to mistakes.</p>
+      <p className="mt-2 text-xs text-center text-neutral-700">PitWall is in early development and is prone to mistakes.</p>
     </form>
   );
 };
