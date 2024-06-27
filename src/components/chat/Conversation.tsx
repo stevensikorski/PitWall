@@ -1,3 +1,3 @@
 export const Conversation = ({ children }: any) => {
-  return <div className="h-[calc(100%-5.125rem)] w-full mb-4 px-4 desktop:px-0 mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop overflow-hidden overflow-y-auto">{children}</div>;
+  return <div className={"h-[calc(100dvh-9rem)] desktop:h-[calc(100dvh-11rem)] flex flex-col gap-4 p-4 desktop:p-0 desktop:my-4 overflow-y-auto scrollbar"}>{children}</div>;
 };

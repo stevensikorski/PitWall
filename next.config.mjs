@@ -9,6 +9,15 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "stevensikorski.com",
+        pathname: "/*",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scrollbar-width: none;
+}
+
+.scrollbar {
+  scrollbar-color: rgba(38, 38, 38, 1) transparent;
+}
+
 h1 {
   @apply text-3xl desktop:text-5xl text-white font-bold;
 }

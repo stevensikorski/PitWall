@@ -9,9 +9,6 @@ const config: Config = {
         tablet: "768px",
         desktop: "1024px",
       },
-      height: {
-        chat: "calc(100vh - 9rem)",
-      },
     },
   },
   plugins: [],
