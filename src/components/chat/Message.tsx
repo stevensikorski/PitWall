@@ -1,4 +1,8 @@
 import { PitWallLogoSmall } from "@/components/ui/Logos";
+import { title } from "@/constants/constants";
+import { FaSpinner } from "react-icons/fa";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type MessageProps = {
   text: string;
@@ -23,10 +27,26 @@ export const PitWallMessage = ({ text }: MessageProps) => {
     <div className="flex flex-col">
       <div className="flex gap-2">
         <PitWallLogoSmall />
-        <p className="h-5 text-center font-semibold text-white uppercase pitwall">PitWall</p>
+        <p className="h-4 desktop:h-5 text-center font-semibold text-white uppercase pitwall">{title}</p>
       </div>
       <div className="py-2 flex w-full">
-        <p className="text-sm w-ful desktop:px-1 flex-grow break-words overflow-hidden">{text}</p>
+        <Markdown remarkPlugins={[remarkGfm]} className="text-sm w-full flex-grow break-words overflow-hidden markdown">
+          {text}
+        </Markdown>
+      </div>
+    </div>
+  );
+};
+
+export const LoadingMessage = () => {
+  return (
+    <div className="flex flex-col">
+      <div className="flex gap-2">
+        <PitWallLogoSmall />
+        <p className="h-4 desktop:h-5 text-center font-semibold text-white uppercase pitwall">{title}</p>
+      </div>
+      <div className="py-2 flex w-full">
+        <FaSpinner className="animate-spin text-neutral-400" size={16} />
       </div>
     </div>
   );

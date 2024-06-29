@@ -1,16 +1,16 @@
 "use client";
 import { useState } from "react";
 import { NewButton, SubmitButton } from "@/components/ui/Buttons";
-import { maxCharacters } from "@/constants/constants";
+import { warning, characters } from "@/constants/constants";
 
 export const MessageBox = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e: any) => {
-    if (e.target.value.length <= maxCharacters) {
+    if (e.target.value.length <= characters) {
       setInputValue(e.target.value);
     } else {
-      setInputValue(e.target.value.substring(0, maxCharacters));
+      setInputValue(e.target.value.substring(0, characters));
     }
   };
 
@@ -21,12 +21,12 @@ export const MessageBox = () => {
         <div className="relative flex-grow">
           <input placeholder="Ask a question for the PitWall..." className="h-10 w-full p-2 pl-3 pr-16 overflow-hidden outline-none text-sm rounded bg-neutral-950 text-neutral-400 placeholder-neutral-700 border border-neutral-800" onChange={handleChange} value={inputValue} />
           <div className="absolute top-0 right-0 h-10 flex items-center pr-3 text-xs text-neutral-700">
-            {inputValue.length}/{maxCharacters}
+            {inputValue.length}/{characters}
           </div>
         </div>
         <SubmitButton />
       </div>
-      <p className="mt-1.5 text-xs text-center text-neutral-700">PitWall is in early development and is prone to mistakes.</p>
+      <p className="mt-1.5 text-xs text-center text-neutral-700">{warning}</p>
     </form>
   );
 };

@@ -10,6 +10,10 @@ html {
   scrollbar-color: rgba(38, 38, 38, 1) transparent;
 }
 
+.pitwall {
+  transform: skew(-26deg);
+}
+
 h1 {
   @apply text-3xl desktop:text-5xl text-white font-bold;
 }
@@ -20,7 +24,7 @@ h3 {
   @apply text-lg desktop:text-xl text-neutral-200 font-medium;
 }
 h4 {
-  @apply text-sm desktop:text-lg text-neutral-400 font-medium;
+  @apply text-xs desktop:text-base text-neutral-400 font-medium;
 }
 p {
   @apply text-xs desktop:text-sm text-neutral-400;
@@ -29,7 +33,64 @@ hr {
   @apply border-neutral-800 my-4;
 }
 
-.pitwall {
-  display: inline-block;
-  transform: skew(-26deg);
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5 {
+  @apply mt-4 mb-2 text-lg desktop:text-xl text-neutral-200 font-semibold;
+}
+
+.markdown p {
+  @apply my-2;
+}
+
+.markdown ul,
+.markdown ol {
+  @apply my-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
+}
+
+.markdown ol {
+  @apply list-decimal;
+}
+
+.markdown li {
+  @apply px-2 mb-2;
+}
+
+.markdown a {
+  @apply text-blue-600 underline;
+}
+
+.markdown code {
+  @apply bg-neutral-950 text-neutral-400 px-1 py-0.5 rounded;
+}
+
+.markdown pre {
+  @apply bg-neutral-950 p-4 rounded-lg overflow-auto border border-neutral-800;
+}
+
+.markdown blockquote {
+  @apply my-2 py-1 px-4 border-l-4 bg-neutral-900 rounded border-neutral-800;
+}
+
+.markdown table {
+  @apply w-full border-collapse bg-neutral-950 border border-neutral-800;
+}
+
+.markdown th,
+.markdown td {
+  @apply border border-neutral-800 px-4 py-2;
+}
+
+.markdown th {
+  @apply bg-neutral-950 font-bold text-left;
+}
+
+.markdown tr:nth-child(even) {
+  @apply bg-neutral-950;
+}
+
+.markdown input[type="checkbox"] {
+  @apply mr-2;
 }

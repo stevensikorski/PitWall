@@ -5,7 +5,7 @@ export const PitWallLogo = () => {
 };
 
 export const PitWallLogoSmall = () => {
-  return <Image src="/flag.svg" alt="Image" height={128} width={128} className="size-5 ml-2" />;
+  return <Image src="/flag.svg" alt="Image" height={128} width={128} className="size-4 desktop:size-5" />;
 };
 
 export const PitWallLogoLarge = () => {
