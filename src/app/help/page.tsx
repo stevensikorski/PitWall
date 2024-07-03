@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Page } from "@/components/containers/Page";
+import { Page } from "@/components/layout/page";
 import { Card } from "@/components/ui/Card";
 import { cards } from "@/constants/constants";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function HomePage() {
       </p>
       <hr></hr>
       <h3>Credits and Acknowledgments</h3>
-      <p>Here's to everyone that has made this project possible!</p>
+      <p>Here&apos;s to everyone that has made this project possible!</p>
       <br></br>
       <p>Steven Sikorski - Project Lead</p>
       <br></br>

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { Chat } from "@/components/containers/Chat";
-import { MessageBox } from "@/components/chat/MessageBox";
-import { Conversation } from "@/components/chat/Conversation";
-import { UserMessage, PitWallMessage, LoadingMessage } from "@/components/chat/Message";
+import { Window } from "@/components/layout/window";
+import { Input } from "@/components/chat/input";
+import { Chat } from "@/components/chat/chat";
+import { UserMessage, PitWallMessage, LoadingMessage, ErrorMessage } from "@/components/chat/message";
 
 export const metadata: Metadata = {
   title: "Chat",
@@ -34,8 +34,8 @@ export default function ChatPage() {
 These races are celebrated for their memorable moments, intense rivalries, and exceptional displays of driving skill.`;
 
   return (
-    <Chat>
-      <Conversation>
+    <Window>
+      <Chat>
         <UserMessage text="Who won the Grand Prix?" />
         <PitWallMessage text="Hey there!" />
         <UserMessage text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW" />
@@ -43,8 +43,9 @@ These races are celebrated for their memorable moments, intense rivalries, and e
         <UserMessage text="List me some F1 races you recommend me to watch." />
         <PitWallMessage text={text} />
         <LoadingMessage />
-      </Conversation>
-      <MessageBox />
-    </Chat>
+        <ErrorMessage />
+      </Chat>
+      <Input />
+    </Window>
   );
 }

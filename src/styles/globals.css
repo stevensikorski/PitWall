@@ -42,12 +42,12 @@ hr {
 }
 
 .markdown p {
-  @apply my-2;
+  @apply mb-2 text-sm;
 }
 
 .markdown ul,
 .markdown ol {
-  @apply my-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
+  @apply mb-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
 }
 
 .markdown ol {

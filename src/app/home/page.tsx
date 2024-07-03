@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Page } from "@/components/containers/Page";
+import { Page } from "@/components/layout/page";
 import { PitWallLogoLarge } from "@/components/ui/Logos";
 import { Card } from "@/components/ui/Card";
 import { title, motto, cards } from "@/constants/constants";

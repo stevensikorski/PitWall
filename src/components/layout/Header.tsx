@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PitWallLogo } from "@/components/ui/Logos";
-import { Navbar } from "@/components/containers/Navbar";
+import { Navbar } from "@/components/layout/navbar";
 import { ChatButton, HelpButton } from "@/components/ui/Buttons";
 import { title } from "@/constants/constants";
 

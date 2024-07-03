@@ -1,4 +1,4 @@
-import { Page } from "@/components/containers/Page";
+import { Page } from "@/components/layout/page";
 
 export default function NotFound() {
   return (
