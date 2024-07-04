@@ -1,4 +1,4 @@
-import { PitWallLogoSmall } from "@/components/ui/Logos";
+import { PitWallLogoSmall } from "@/components/ui/logos";
 import { title } from "@/constants/constants";
 
 export const Name = () => {

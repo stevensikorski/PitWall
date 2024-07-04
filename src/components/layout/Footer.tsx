@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { LinkedIn, GitHub, XTwitter, Instagram, BuyMeACoffee } from "@/components/ui/Buttons";
+import { LinkedIn, GitHub, XTwitter, Instagram, BuyMeACoffee } from "@/components/ui/buttons";
 import { copyright, disclaimer } from "@/constants/constants";
 
 export const Footer = () => {

@@ -1,3 +1,3 @@
 export const EmptyScreen = () => {
-  return <div></div>;
+  return <div>Empty Screen</div>;
 };

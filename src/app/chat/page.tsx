@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { Window } from "@/components/layout/window";
-import { Input } from "@/components/chat/input";
 import { Chat } from "@/components/chat/chat";
-import { UserMessage, PitWallMessage, LoadingMessage, ErrorMessage } from "@/components/chat/message";
 
 export const metadata: Metadata = {
   title: "Chat",
@@ -35,17 +33,7 @@ These races are celebrated for their memorable moments, intense rivalries, and e
 
   return (
     <Window>
-      <Chat>
-        <UserMessage text="Who won the Grand Prix?" />
-        <PitWallMessage text="Hey there!" />
-        <UserMessage text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW" />
-        <PitWallMessage text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW" />
-        <UserMessage text="List me some F1 races you recommend me to watch." />
-        <PitWallMessage text={text} />
-        <LoadingMessage />
-        <ErrorMessage />
-      </Chat>
-      <Input />
+      <Chat />
     </Window>
   );
 }

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Page } from "@/components/layout/page";
-import { Card } from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import { cards } from "@/constants/constants";
 import Link from "next/link";
 
