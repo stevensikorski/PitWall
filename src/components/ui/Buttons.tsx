@@ -4,6 +4,7 @@ import { RiChat4Fill, RiChatNewFill } from "react-icons/ri";
 import { GrReturn } from "react-icons/gr";
 import { SiBuymeacoffee } from "react-icons/si";
 import { BsInfoLg } from "react-icons/bs";
+import { MdOutlineQuestionMark } from "react-icons/md";
 import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url, instagram_url } from "@/constants/constants";
 
 export const ChatButton = () => {
@@ -80,5 +81,14 @@ export const BuyMeACoffee = () => {
       <SiBuymeacoffee className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
       <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-neutral-950 border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">Buy Me a Coffee</p>
     </Link>
+  );
+};
+
+export const PanelButton = () => {
+  return (
+    <button className="h-full w-full bg-neutral-950 rounded-lg border border-neutral-800 p-4 flex flex-col group">
+      <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />
+      <p className="text-neutral-700 group-hover:text-neutral-400 transition duration-200 text-start">Who is currently leading the constructors championship?</p>
+    </button>
   );
 };

@@ -1,29 +1,24 @@
 "use client";
 import { useChat } from "ai/react";
 import { History } from "@/components/chat/history";
-
 import { UserMessage, PitWallMessage, LoadingMessage, ErrorMessage } from "@/components/chat/message";
 import { NewChatButton, SubmitButton } from "@/components/ui/buttons";
 import { warning, characters } from "@/constants/constants";
-import { EmptyScreen } from "@/components/chat/panel";
-import { FormEvent } from "react";
-export const Chat = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+import { Panel } from "@/components/chat/panel";
 
-  const sendMessage = (e: FormEvent) => {
-    e.preventDefault();
-    if (input.trim() !== "") {
-      handleSubmit();
-    }
-  };
+export const Chat = () => {
+  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat();
 
   return (
     <div>
       <History>
-        {messages.length === 0 && <EmptyScreen />}
+        {messages.length === 0 && <Panel />}
         {messages.map((message) => (message.role === "user" ? <UserMessage key={message.id} text={message.content} /> : <PitWallMessage key={message.id} text={message.content} />))}
+        {isLoading && <LoadingMessage />}
+        {error && <ErrorMessage />}
+        {messages.length > 0 && <div className="h-16 flex-shrink-0" />}
       </History>
-      <form onSubmit={sendMessage} className="h-24 desktop:h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t desktop:border border-neutral-800 desktop:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
+      <form onSubmit={input.trim().length > 0 ? handleSubmit : (e) => e.preventDefault()} className="h-24 tablet:h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
         <div className="h-10 flex justify-center items-center">
           <NewChatButton />
           <div className="relative flex-grow">

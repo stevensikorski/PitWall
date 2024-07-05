@@ -15,7 +15,7 @@ export const Input = () => {
   };
 
   return (
-    <form className="h-20 w-full p-2 bg-gradient-to-b from-neutral-900 to-neutral-950 border-t desktop:border border-neutral-800 desktop:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
+    <form className="h-20 w-full p-2 bg-gradient-to-b from-neutral-900 to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
       <div className="h-10 flex justify-center items-center">
         <NewChatButton />
         <div className="relative flex-grow">
