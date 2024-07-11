@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Joke, Weather } from "@/app/chat/schema";
 import { title } from "@/constants/constants";
 import { PitWallLogoSmall } from "@/components/ui/logos";
-import { VscLoading } from "react-icons/vsc";
+import { CgSpinner } from "react-icons/cg";
 
 type MessageProperties = {
   display: ReactNode;
@@ -32,17 +32,15 @@ export const PitWallComponent = ({ display }: MessageProperties) => {
 
 export const LoadingComponent = () => {
   return (
-    <div className="flex flex-col">
-      <div className="flex w-full pt-2">
-        <VscLoading className="animate-spin text-neutral-400" size={16} />
-      </div>
+    <div className="flex w-full pt-2">
+      <CgSpinner className="animate-spin text-neutral-400 font-bold" size={16} />
     </div>
   );
 };
 
 export const JokeComponent = ({ joke }: { joke?: Joke }) => {
   return (
-    <div>
+    <div className="flex flex-col w-full pt-2">
       <p className="bg-red-300">{joke?.setup}</p>
       <p className="bg-blue-300">{joke?.punchline}</p>
     </div>
@@ -51,12 +49,12 @@ export const JokeComponent = ({ joke }: { joke?: Joke }) => {
 
 export const WeatherComponent = ({ weather }: { weather?: Weather }) => {
   return (
-    <div>
+    <div className="flex w-full pt-2">
       <p className="bg-red-300">{weather?.date}</p>
       <p className="bg-blue-300">{weather?.tempature}</p>
       <p className="bg-green-300">{weather?.rain}</p>
-      <p className="bg-red-300">{weather?.humidity}</p>
-      <p className="bg-blue-300">{weather?.wind}</p>
+      <p className="bg-yellow-300">{weather?.humidity}</p>
+      <p className="bg-purple-300">{weather?.wind}</p>
     </div>
   );
 };

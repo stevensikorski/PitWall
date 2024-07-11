@@ -14,10 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-neutral-950 ${GeistSans.className}`}>
+      <body className={`background ${GeistSans.className}`}>
         <Header />
         {children}
         <Footer />
+        <div className="absolute top-0 -z-50 h-screen w-screen bg-[radial-gradient(ellipse_100%_100%_at_50%_-0%,rgba(10,10,10,1),rgba(128,128,128,0))]"></div>
       </body>
     </html>
   );

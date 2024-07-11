@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { VscLoading } from "react-icons/vsc";
+import { CgSpinner } from "react-icons/cg";
 import { FaLinkedin, FaGithub, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { RiChat4Fill, RiChatNewFill } from "react-icons/ri";
 import { GrReturn } from "react-icons/gr";
 import { SiBuymeacoffee } from "react-icons/si";
-import { BsInfoLg, BsThreeDots } from "react-icons/bs";
+import { BsInfoLg } from "react-icons/bs";
 import { MdOutlineQuestionMark } from "react-icons/md";
 import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url, instagram_url } from "@/constants/constants";
 
@@ -43,7 +43,7 @@ export const SubmitButton = ({ loading }: SubmitProperties) => {
         <GrReturn className="size-6 text-neutral-400 desktop:group-hover:text-neutral-950 transition-colors duration-200" />
       </div>
       <div className={`absolute transition-opacity duration-200 ${loading ? "opacity-100" : "opacity-0"}`}>
-        <VscLoading className="animate-spin transition-colors text-neutral-950" size={20} />
+        <CgSpinner className="animate-spin text-neutral-950" size={24} />
       </div>
     </button>
   );

@@ -7,11 +7,18 @@ html {
 }
 
 .scrollbar {
-  scrollbar-color: rgba(38, 38, 38, 1) transparent;
+  scrollbar-color: rgba(38, 38, 38, 0.5) transparent;
 }
 
 .pitwall {
   transform: skew(-26deg);
+}
+
+.background {
+  background-color: #0a0a0a;
+  background-image: radial-gradient(#ffffff10 1px, transparent 1px), radial-gradient(#ffffff10 1px, #0a0a0a 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }
 
 h1 {
