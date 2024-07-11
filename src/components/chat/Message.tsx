@@ -1,38 +1,39 @@
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
+"use client";
 import { FaSpinner } from "react-icons/fa";
 import { Name } from "@/components/chat/name";
-import { error } from "@/constants/constants";
+import { errorMessage } from "@/constants/constants";
+import { MarkdownText } from "@/components/layout/markdown";
 
-type MessageProps = {
+type MessageProperties = {
   text: string;
 };
 
-export const UserMessage = ({ text }: MessageProps) => {
+export const UserMessage = ({ text }: MessageProperties) => {
   return (
     <div className="flex justify-end items-start">
       <div className="p-2 px-3 flex max-w-[80%] desktop:max-w-[65%] bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-lg border border-neutral-800">
-        <p className="text-sm flex-grow break-words overflow-hidden">{text}</p>
+        <p className="flex-grow break-words overflow-hidden">{text}</p>
       </div>
     </div>
   );
 };
 
-export const PitWallMessage = ({ text }: MessageProps) => {
+export const PitWallMessage = ({ text }: MessageProperties) => {
   return (
     <div className="flex flex-col">
       <Name />
-      <div className="pt-2 flex flex-col gap-2 w-full">
-        <Markdown remarkPlugins={[remarkGfm, remarkMath]} className="text-sm w-full flex-grow break-words overflow-hidden markdown">
-          {text}
-        </Markdown>
+      <div className="flex flex-col w-full">
+        <MarkdownText text={text} />
       </div>
     </div>
   );
 };
 
-export const LoadingMessage = () => {
+type LoadingProperties = {
+  loading: boolean;
+};
+
+export const LoadingMessage = ({ loading }: LoadingProperties) => {
   return (
     <div className="flex flex-col">
       <div className="flex w-full">
@@ -46,8 +47,8 @@ export const ErrorMessage = () => {
   return (
     <div className="flex flex-col">
       <Name />
-      <div className="pt-2 flex w-full">
-        <p className="text-sm text-red-300 flex-grow break-words overflow-hidden">{error}</p>
+      <div className="flex w-full pt-2">
+        <p className="text-sm text-red-300 flex-grow break-words overflow-hidden">{errorMessage}</p>
       </div>
     </div>
   );

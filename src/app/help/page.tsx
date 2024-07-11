@@ -31,7 +31,7 @@ export default function HomePage() {
       <br></br>
       <p>
         PitWall is a project currently in its early development stages. As with any new technology, particularly those involving large language models, there is a potential for errors and inconsistencies. We are actively working to improve the system and appreciate your understanding during this period. If you encounter any issues or have any concerns, please do not hesitate to contact us at{" "}
-        <Link href={"mailto:pitwall@stevensikorski.com"} className="text-blue-600">
+        <Link href={"mailto:pitwall@stevensikorski.com"} className="text-blue-600 hover:underline">
           pitwall@stevensikorski.com
         </Link>
         .
@@ -43,6 +43,13 @@ export default function HomePage() {
       <p>Steven Sikorski - Project Lead</p>
       <br></br>
       <p>OpenAI, Vercel AI SDK</p>
+      <br></br>
+      <p>
+        Powered by{" "}
+        <Link href="https://www.weatherapi.com/" target="_blank" className="text-blue-600 hover:underline">
+          WeatherAPI.com
+        </Link>
+      </p>
     </Page>
   );
 }

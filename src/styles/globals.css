@@ -26,6 +26,7 @@ h3 {
 h4 {
   @apply text-xs desktop:text-base text-neutral-400 font-medium;
 }
+
 p {
   @apply text-xs desktop:text-sm text-neutral-400;
 }
@@ -42,12 +43,12 @@ hr {
 }
 
 .markdown p {
-  @apply mb-2 text-sm;
+  @apply my-2 text-xs desktop:text-sm;
 }
 
 .markdown ul,
 .markdown ol {
-  @apply mb-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
+  @apply my-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
 }
 
 .markdown ol {
@@ -55,7 +56,7 @@ hr {
 }
 
 .markdown li {
-  @apply px-2 mb-2;
+  @apply px-2 my-2;
 }
 
 .markdown a {
@@ -63,11 +64,11 @@ hr {
 }
 
 .markdown code {
-  @apply bg-neutral-950 text-neutral-400 px-1 py-0.5 rounded;
+  @apply bg-neutral-950 text-neutral-400 px-1 py-0.5 my-2 rounded;
 }
 
 .markdown pre {
-  @apply bg-neutral-950 p-4 rounded-lg overflow-auto border border-neutral-800;
+  @apply bg-neutral-950 p-4 my-2 rounded-lg overflow-auto border border-neutral-800;
 }
 
 .markdown blockquote {
