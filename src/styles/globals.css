@@ -15,27 +15,26 @@ html {
 }
 
 .background {
-  background-color: #0a0a0a;
-  background-image: radial-gradient(#ffffff10 1px, transparent 1px), radial-gradient(#ffffff10 1px, #0a0a0a 1px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
+  background-image: radial-gradient(#121212 1px, transparent 1px), radial-gradient(#121212 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
 }
 
 h1 {
-  @apply text-3xl desktop:text-5xl text-white font-bold;
+  @apply text-3xl tablet:text-5xl text-white font-bold;
 }
 h2 {
-  @apply text-xl desktop:text-3xl text-neutral-100 font-semibold;
+  @apply text-xl tablet:text-3xl text-neutral-100 font-semibold;
 }
 h3 {
-  @apply text-lg desktop:text-xl text-neutral-200 font-medium;
+  @apply text-lg tablet:text-xl text-neutral-200 font-medium;
 }
 h4 {
-  @apply text-xs desktop:text-base text-neutral-400 font-medium;
+  @apply text-xs tablet:text-base text-neutral-400 font-medium;
 }
 
 p {
-  @apply text-xs desktop:text-sm text-neutral-400;
+  @apply text-xs tablet:text-sm text-neutral-400;
 }
 hr {
   @apply border-neutral-800 my-4;
@@ -46,16 +45,16 @@ hr {
 .markdown h3,
 .markdown h4,
 .markdown h5 {
-  @apply mt-4 mb-2 text-lg desktop:text-xl text-neutral-200 font-semibold;
+  @apply mt-4 mb-2 text-lg tablet:text-xl text-neutral-200 font-semibold;
 }
 
 .markdown p {
-  @apply my-2 text-xs desktop:text-sm;
+  @apply my-2 text-xs tablet:text-sm;
 }
 
 .markdown ul,
 .markdown ol {
-  @apply my-2 pl-6 text-xs desktop:text-sm text-neutral-400 font-medium;
+  @apply my-2 pl-6 text-xs tablet:text-sm text-neutral-400 font-medium;
 }
 
 .markdown ol {
@@ -79,11 +78,11 @@ hr {
 }
 
 .markdown blockquote {
-  @apply my-2 py-1 px-4 border-l-4 bg-neutral-900 rounded border-neutral-800;
+  @apply my-2 py-1 px-4 border-l-4 bg-neutral-950 rounded border-neutral-800;
 }
 
 .markdown table {
-  @apply w-full border-collapse bg-neutral-950 border border-neutral-800;
+  @apply w-full mt-2 border-collapse bg-neutral-950 border border-neutral-800;
 }
 
 .markdown th,

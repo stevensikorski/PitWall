@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+import { MdOutlineQuestionMark } from "react-icons/md";
+
 export const title = "PitWall";
 export const description = "PitWall is a GPT-powered application, providing spectators with motorsports data, including historical information and real-time updates across various racing series.";
 export const motto = "AI driven motorsports data and updates";
@@ -11,9 +14,9 @@ export const portfolio_url = "https://stevensikorski.com";
 export const linkedin_url = "https://linkedin.com/in/stevensikorski";
 export const github_url = "https://github.com/stevensikorski";
 export const xtwitter_url = "/";
-export const instagram_url = "/";
 export const buymeacoffee_url = "/";
 export const characters = 128;
+export const delay = 3000;
 export const cards: { title: string; text: string }[] = [
   {
     title: "Help Card 1",
@@ -38,5 +41,27 @@ export const cards: { title: string; text: string }[] = [
   {
     title: "Help Card 6",
     text: "",
+  },
+];
+export const panel: { id: number; question: string; icon: ReactNode }[] = [
+  {
+    id: 1,
+    question: "Who is currently leading the constructors championship?",
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+  },
+  {
+    id: 2,
+    question: "What is the next upcoming GRAND PRIX?",
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+  },
+  {
+    id: 3,
+    question: "What was the result of AUSTRIAN GRAND PRIX?",
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+  },
+  {
+    id: 4,
+    question: "Who is the most famous FORMULA 1 driver?",
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
   },
 ];

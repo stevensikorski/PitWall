@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Chat",
 };
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 10;
+
 export default function ChatPage() {
   return (
     <Window>

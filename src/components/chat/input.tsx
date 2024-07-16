@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import { nanoid } from "nanoid";
 import { NewChatButton, SubmitButton } from "@/components/ui/buttons";
 import { warning, characters } from "@/constants/constants";
+import { useActions, useUIState } from "ai/rsc";
 
 interface ClientMessage {
   id: string;
@@ -10,32 +11,28 @@ interface ClientMessage {
 }
 
 interface InputProperties {
-  input: string;
-  setInput: (value: string) => void;
-  setConversation: (value: (currentConversation: ClientMessage[]) => ClientMessage[]) => void;
-  continueConversation: (input: string) => Promise<ClientMessage>;
   loading: boolean;
   setLoading: (value: boolean) => void;
 }
 
-export const Input = ({ input, setInput, setConversation, continueConversation, loading, setLoading }: InputProperties) => {
+export const Input = ({ loading, setLoading }: InputProperties) => {
+  const [input, setInput] = useState<string>("");
+  const [conversation, setConversation] = useUIState();
+  const { continueConversation } = useActions();
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (input.trim() === "" || loading) return;
+    setInput("");
+    setLoading(true);
+    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, { id: nanoid(), role: "user", display: input }]);
+    const message = await continueConversation(input);
+    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, message]);
+    setLoading(false);
+  };
+
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-
-        if (input.trim() === "" || loading) return;
-
-        setLoading(true);
-        setInput("");
-        setConversation((currentConversation: ClientMessage[]) => [...currentConversation, { id: nanoid(), role: "user", display: input }]);
-        const message = await continueConversation(input);
-        setConversation((currentConversation: ClientMessage[]) => [...currentConversation, message]);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      }}
-      className="h-24 tablet:h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
+    <form onSubmit={handleSubmit} className="h-24 tablet:h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
       <div className="h-10 flex justify-center items-center">
         <NewChatButton />
         <div className="relative flex-grow">

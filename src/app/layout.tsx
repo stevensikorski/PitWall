@@ -1,11 +1,14 @@
+import { Analytics } from "@vercel/analytics/react";
 import { GeistSans } from "geist/font/sans";
-
-export { metadata } from "@/lib/metadata";
-export { viewport } from "@/lib/viewport";
 
 import "@/styles/globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+
+export { metadata } from "@/lib/metadata";
+export { viewport } from "@/lib/viewport";
+export const dynamic = "force-dynamic";
+export const maxDuration = 10;
 
 export default function RootLayout({
   children,
@@ -14,11 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`background ${GeistSans.className}`}>
+      <body className={`bg-neutral-950 background ${GeistSans.className}`}>
+        <div className="absolute top-0 -z-50 pointer-events-none h-[100dvh] w-screen overflow-hidden bg-[radial-gradient(ellipse_300%_100%_at_50%_-0%,rgba(0,0,0,1),rgba(0,0,0,0))]"></div>
         <Header />
         {children}
         <Footer />
-        <div className="absolute top-0 -z-50 h-screen w-screen bg-[radial-gradient(ellipse_100%_100%_at_50%_-0%,rgba(10,10,10,1),rgba(128,128,128,0))]"></div>
+        <Analytics />
       </body>
     </html>
   );

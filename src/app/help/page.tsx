@@ -38,7 +38,7 @@ export default function HomePage() {
       </p>
       <hr></hr>
       <h3>Credits and Acknowledgments</h3>
-      <p>Here&apos;s to everyone that has made this project possible!</p>
+      <p>Here&apos;s to everything that has made this project possible!</p>
       <br></br>
       <p>Steven Sikorski - Project Lead</p>
       <br></br>
@@ -46,9 +46,10 @@ export default function HomePage() {
       <br></br>
       <p>
         Powered by{" "}
-        <Link href="https://www.weatherapi.com/" target="_blank" className="text-blue-600 hover:underline">
-          WeatherAPI.com
+        <Link href="https://openf1.org/" target="_blank" className="text-blue-600 hover:underline">
+          OpenF1
         </Link>
+        .
       </p>
     </Page>
   );
