@@ -11,15 +11,15 @@ type PanelProperties = {
 };
 
 export const Panel = ({ loading, setLoading }: PanelProperties) => {
-  const [conversation, setConversation] = useUIState();
-  const { continueConversation } = useActions();
+  const [messages, setMessages] = useUIState();
+  const { submitUserMessage } = useActions();
 
   const sendMessage = async (text: string) => {
     if (loading) return;
     setLoading(true);
-    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, { id: nanoid(), role: "user", display: text }]);
-    const message = await continueConversation(text);
-    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, message]);
+    setMessages((currentMessages: ClientMessage[]) => [...currentMessages, { id: nanoid(), role: "user", display: text }]);
+    const message = await submitUserMessage(text);
+    setMessages((currentMessages: ClientMessage[]) => [...currentMessages, message]);
     setLoading(false);
   };
 

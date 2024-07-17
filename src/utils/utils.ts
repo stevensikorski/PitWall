@@ -28,7 +28,6 @@ export const fetchWeatherData = async () => {
       pressure: weatherData.pressure,
     };
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error(`Error fetching weather: ${error}`);

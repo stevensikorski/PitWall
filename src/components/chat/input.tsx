@@ -17,17 +17,17 @@ interface InputProperties {
 
 export const Input = ({ loading, setLoading }: InputProperties) => {
   const [input, setInput] = useState<string>("");
-  const [conversation, setConversation] = useUIState();
-  const { continueConversation } = useActions();
+  const [messages, setMessages] = useUIState();
+  const { submitUserMessage } = useActions();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (input.trim() === "" || loading) return;
     setInput("");
     setLoading(true);
-    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, { id: nanoid(), role: "user", display: input }]);
-    const message = await continueConversation(input);
-    setConversation((currentConversation: ClientMessage[]) => [...currentConversation, message]);
+    setMessages((currentMessages: ClientMessage[]) => [...currentMessages, { id: nanoid(), role: "user", display: input }]);
+    const message = await submitUserMessage(input);
+    setMessages((currentMessages: ClientMessage[]) => [...currentMessages, message]);
     setLoading(false);
   };
 

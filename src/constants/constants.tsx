@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
 import { MdOutlineQuestionMark } from "react-icons/md";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 
 export const title = "PitWall";
 export const description = "PitWall is a GPT-powered application, providing spectators with motorsports data, including historical information and real-time updates across various racing series.";
 export const motto = "AI driven motorsports data and updates";
 export const warning = "PitWall is in early development and is prone to mistakes.";
-export const errorMessage = "An error has occurred. Please try again later or contact support.";
+export const error = "An error has occurred. Please try again later.";
 export const copyright = "Steven Sikorski © 2024";
 export const disclaimer = "This website is unofficial and is not associated in any way with the Formula 1 companies. F1, FORMULA ONE, FORMULA 1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX and related marks are trade marks of Formula One Licensing B.V.";
 export const url = "https://pitwall.stevensikorski.com";
@@ -16,7 +17,6 @@ export const github_url = "https://github.com/stevensikorski";
 export const xtwitter_url = "/";
 export const buymeacoffee_url = "/";
 export const characters = 128;
-export const delay = 3000;
 export const cards: { title: string; text: string }[] = [
   {
     title: "Help Card 1",
@@ -46,22 +46,22 @@ export const cards: { title: string; text: string }[] = [
 export const panel: { id: number; question: string; icon: ReactNode }[] = [
   {
     id: 1,
-    question: "Who is currently leading the constructors championship?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+    question: "What are the current weather and track conditions?",
+    icon: <TiWeatherPartlySunny className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
   },
   {
     id: 2,
     question: "What is the next upcoming GRAND PRIX?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
   },
   {
     id: 3,
     question: "What was the result of AUSTRIAN GRAND PRIX?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
   },
   {
     id: 4,
     question: "Who is the most famous FORMULA 1 driver?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 group-hover:text-neutral-400 transition duration-200 " />,
+    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
   },
 ];

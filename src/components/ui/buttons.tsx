@@ -6,7 +6,6 @@ import { RiChat4Fill, RiChatNewFill } from "react-icons/ri";
 import { GrReturn } from "react-icons/gr";
 import { SiBuymeacoffee } from "react-icons/si";
 import { BsInfoLg } from "react-icons/bs";
-import { MdOutlineQuestionMark } from "react-icons/md";
 import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url } from "@/constants/constants";
 
 export const ChatButton = () => {
@@ -95,7 +94,7 @@ type PanelButtonProperties = {
 export const PanelButton = ({ question, icon, onClick }: PanelButtonProperties) => {
   return (
     <button onClick={onClick} className="h-full w-full p-4 flex flex-col group bg-gradient-to-b from-neutral-950 to-black rounded-lg border border-neutral-800 outline-none">
-      <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200 " />
+      {icon}
       <p className="text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200 text-start">{question}</p>
     </button>
   );

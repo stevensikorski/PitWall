@@ -8,17 +8,17 @@ import { UserComponent, PitWallComponent } from "@/app/chat/components";
 import { ClientMessage } from "@/app/chat/action";
 
 export const Chat = () => {
-  const [conversation] = useUIState();
+  const [messages, setMessages] = useUIState();
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <div>
       <History>
-        {conversation.length === 0 && <Panel loading={loading} setLoading={setLoading} />}
-        {conversation.map((message: ClientMessage) => (
+        {messages.length === 0 && <Panel loading={loading} setLoading={setLoading} />}
+        {messages.map((message: ClientMessage) => (
           <div key={message.id}>{message.role === "user" ? <UserComponent display={message.display}></UserComponent> : <PitWallComponent display={message.display}></PitWallComponent>}</div>
         ))}
-        {conversation.length > 0 && <div className="h-8 flex-shrink-0" />}
+        {messages.length > 0 && <div className="h-8 flex-shrink-0" />}
       </History>
       <Input loading={loading} setLoading={setLoading} />
     </div>
