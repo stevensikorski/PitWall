@@ -16,7 +16,7 @@ export default function HomePage() {
           <PitWallLogoLarge />
           <h1 className="pitwall uppercase">{title}</h1>
         </div>
-        <h4 className="text-center">{motto}</h4>
+        <h4 className="text-center mt-4">{motto}</h4>
       </div>
       <hr></hr>
       <h3>Features</h3>

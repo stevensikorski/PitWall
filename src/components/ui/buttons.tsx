@@ -7,6 +7,7 @@ import { GrReturn } from "react-icons/gr";
 import { SiBuymeacoffee } from "react-icons/si";
 import { BsInfoLg } from "react-icons/bs";
 import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url } from "@/constants/constants";
+import { BiSolidChevronRight } from "react-icons/bi";
 
 export const ChatButton = () => {
   return (
@@ -26,7 +27,7 @@ export const HelpButton = () => {
 
 export const NewChatButton = () => {
   return (
-    <a href={"/chat"} className="size-10 mr-2 bg-neutral-950 desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
+    <a href={"/chat"} className="size-10 min-w-10 mr-2 bg-neutral-950 desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
       <RiChatNewFill className="size-6 text-neutral-400 desktop:group-hover:text-neutral-950 transition duration-200" />
     </a>
   );
@@ -38,7 +39,7 @@ type SubmitProperties = {
 
 export const SubmitButton = ({ loading }: SubmitProperties) => {
   return (
-    <button disabled={loading} className={`size-10 ml-2 bg-neutral-950 rounded border border-neutral-800 flex justify-center items-center transition duration-200 relative group ${loading ? "bg-white pointer-events-none" : "desktop:hover:bg-white"}`}>
+    <button disabled={loading} className={`size-10 min-w-10 ml-2 bg-neutral-950 rounded border border-neutral-800 flex justify-center items-center transition duration-200 relative group ${loading ? "bg-white pointer-events-none" : "desktop:hover:bg-white"}`}>
       <div className={`transition-opacity duration-200 ${loading ? "opacity-0" : "opacity-100"}`}>
         <GrReturn className="size-6 text-neutral-400 desktop:group-hover:text-neutral-950 transition-colors duration-200" />
       </div>
@@ -93,9 +94,10 @@ type PanelButtonProperties = {
 
 export const PanelButton = ({ question, icon, onClick }: PanelButtonProperties) => {
   return (
-    <button onClick={onClick} className="h-full w-full p-4 flex flex-col group bg-gradient-to-b from-neutral-950 to-black rounded-lg border border-neutral-800 outline-none">
+    <button onClick={onClick} className="py-2 flex justify-between items-center bg-gradient-to-b from-neutral-950 to-black rounded-lg border border-neutral-800 group">
       {icon}
-      <p className="text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200 text-start">{question}</p>
+      <p className="h-full w-full text-left flex items-center text-neutral-700 desktop:group-hover:text-neutral-400 transition-colors duration-200">{question}</p>
+      <BiSolidChevronRight className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400 transition-colors duration-200" />
     </button>
   );
 };

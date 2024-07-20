@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
-import { MdOutlineQuestionMark } from "react-icons/md";
+import { MdOutlineQuestionMark, MdHeadsetMic } from "react-icons/md";
 import { TiWeatherPartlySunny } from "react-icons/ti";
+import { RxLapTimer } from "react-icons/rx";
 
 export const title = "PitWall";
-export const description = "PitWall is a GPT-powered application, providing spectators with motorsports data, including historical information and real-time updates across various racing series.";
-export const motto = "AI driven motorsports data and updates";
+export const description = "PitWall is an AI application driving real-time updates and insights for the latest FORMULA 1 session through an interactive chatbot, redefining the spectator experience.";
+export const motto = "AI driven FORMULA 1 insights and live timing updates";
 export const warning = "PitWall is in early development and is prone to mistakes.";
 export const error = "An error has occurred. Please try again later.";
 export const copyright = "Steven Sikorski © 2024";
@@ -43,25 +44,25 @@ export const cards: { title: string; text: string }[] = [
     text: "",
   },
 ];
-export const panel: { id: number; question: string; icon: ReactNode }[] = [
+export const panel: { question: string; icon: ReactNode }[] = [
   {
-    id: 1,
     question: "What are the current weather and track conditions?",
-    icon: <TiWeatherPartlySunny className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
+    icon: <TiWeatherPartlySunny className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />,
   },
   {
-    id: 2,
-    question: "What is the next upcoming GRAND PRIX?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
+    question: "What did Charles Leclerc say to his race engineer?",
+    icon: <MdHeadsetMic className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
   {
-    id: 3,
-    question: "What was the result of AUSTRIAN GRAND PRIX?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
+    question: "Who set the fastest lap and what was the lap time?",
+    icon: <RxLapTimer className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
   {
-    id: 4,
     question: "Who is the most famous FORMULA 1 driver?",
-    icon: <MdOutlineQuestionMark className="size-5 mb-4 text-neutral-400 transition duration-200 " />,
+    icon: <MdOutlineQuestionMark className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200 " />,
+  },
+  {
+    question: "Who is the most famous FORMULA 1 driver?",
+    icon: <MdOutlineQuestionMark className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
 ];

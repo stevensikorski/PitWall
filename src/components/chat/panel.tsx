@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { ClientMessage } from "@/app/chat/action";
 import { PitWallLogoLarge } from "@/components/ui/logos";
 import { PanelButton } from "@/components/ui/buttons";
-import { panel } from "@/constants/constants";
+import { panel, warning } from "@/constants/constants";
 import { useActions, useUIState } from "ai/rsc";
 
 type PanelProperties = {
@@ -24,12 +24,14 @@ export const Panel = ({ loading, setLoading }: PanelProperties) => {
   };
 
   return (
-    <div className="h-[calc(100dvh-10rem)] desktop:h-[calc(100dvh-11rem)] w-full flex flex-col justify-center items-center">
-      <PitWallLogoLarge />
-      <div className="mt-8 grid grid-cols-2 tablet:grid-cols-4 gap-2 tablet:gap-4">
-        {panel.map((item) => (
-          <PanelButton key={item.id} question={item.question} icon={item.icon} onClick={() => sendMessage(item.question)} />
-        ))}
+    <div className="h-[calc(100dvh-12rem)] desktop:h-[calc(100dvh-11rem)] w-full flex flex-col justify-center items-center">
+      <div className="w-full tablet:w-[512px] h-auto p-0 tablet:p-4 flex flex-col items-center tablet:bg-gradient-to-b from-neutral-950 to-black rounded-lg tablet:border border-neutral-800">
+        <PitWallLogoLarge />
+        <div className="w-full mt-8 tablet:mt-4 gap-2 flex flex-col">
+          {panel.map((item, index) => (
+            <PanelButton key={index} question={item.question} icon={item.icon} onClick={() => sendMessage(item.question)} />
+          ))}
+        </div>
       </div>
     </div>
   );

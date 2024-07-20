@@ -8,10 +8,10 @@ import { ReactNode } from "react";
 import { z } from "zod";
 
 import { MarkdownText } from "@/components/layout/markdown";
-import { LoadingComponent, ErrorComponent, WeatherComponent } from "@/app/chat/components";
-import { weatherSchema } from "@/app/chat/schema";
+import { LoadingComponent, ErrorComponent, WeatherComponent, RadioComponent } from "@/app/chat/components";
+import { driverSchema, weatherSchema } from "@/app/chat/schema";
 import { system_message } from "@/constants/prompts";
-import { fetchWeatherData } from "@/utils/utils";
+import { fetchWeatherData, fetchDriverData, fetchRadioData } from "@/utils/utils";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -29,9 +29,10 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
 
   const aiState = getMutableAIState();
   try {
+    const recentMessages = aiState.get().slice(-5);
     const result = await streamUI({
-      model: openai("gpt-3.5-turbo"),
-      messages: [...aiState.get(), { role: "user", content: input }],
+      model: openai("gpt-4o-mini"),
+      messages: [...recentMessages, { role: "user", content: input }],
       system: system_message,
       text: ({ content, done }) => {
         if (done) {
@@ -41,18 +42,17 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
       },
       tools: {
         latest_weather: {
-          description: "Retrieve weather information only if asked. Do not assume or recommend it.",
+          description: "Retrieve the latest weather information only if asked. Do not assume or recommend it.",
           parameters: z.object({}),
           generate: async function* () {
             yield <LoadingComponent />;
             try {
               const data = await fetchWeatherData();
               const weather = await generateObject({
-                model: openai("gpt-3.5-turbo"),
+                model: openai("gpt-4o-mini"),
                 schema: weatherSchema,
-                prompt: `Please provide the following weaather data only if asked. The data corresponds to the latest weather of the current/last session. Please interpet the following data: ${JSON.stringify(data)}`,
+                prompt: `Please interpet the following data: ${JSON.stringify(data)}`,
               });
-
               aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(weather.object) }]);
 
               return <WeatherComponent weather={weather.object} />;
@@ -62,6 +62,38 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
             }
           },
         },
+        latest_radio: {
+          description: "Retrieve the latest team radio audio recording only if asked. Do not assume or recommend it.",
+          parameters: z.object({
+            driverName: z.string().describe("the driver's team radio to retrieve"),
+          }),
+          generate: async function* ({ driverName }) {
+            yield <LoadingComponent />;
+            try {
+              const data = await fetchDriverData();
+              const driver = await generateObject({
+                model: openai("gpt-4o-mini"),
+                schema: driverSchema,
+                prompt: `Find the driver based on the given information: ${driverName}. List: ${JSON.stringify(data)}`,
+              });
+              aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(driver.object) }]);
+
+              const radio = await fetchRadioData(Number(driver.object.number));
+              if (radio.length === 0) {
+                return <MarkdownText text={`There are no team radio's from ${driverName}.`} />;
+              }
+
+              return <RadioComponent driver={driver.object} radio={radio} />;
+            } catch (error) {
+              console.error(error);
+              return <ErrorComponent />;
+            }
+          },
+        },
+        // next race info
+        // standings
+        // session finish positions
+        // fastest lap
       },
     });
 

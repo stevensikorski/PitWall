@@ -7,8 +7,7 @@ html {
 }
 
 .scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(38, 38, 38, 0.5) transparent;
+  scrollbar-width: none;
 }
 
 .pitwall {
@@ -16,7 +15,7 @@ html {
 }
 
 .background {
-  background-image: radial-gradient(#121212 1px, transparent 1px), radial-gradient(#121212 1px, transparent 1px);
+  background-image: radial-gradient(#0a0a0a 1px, transparent 1px), radial-gradient(#0a0a0a 1px, transparent 1px);
   background-size: 16px 16px;
   background-position: 0 0, 8px 8px;
 }
