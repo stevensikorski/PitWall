@@ -63,7 +63,7 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
           },
         },
         latest_radio: {
-          description: "Retrieve the latest team radio audio recording only if asked. Do not assume or recommend it.",
+          description: "Retrieve the team radio audio of the latest session only if asked. Do not assume or recommend it.",
           parameters: z.object({
             driverName: z.string().describe("the driver's team radio to retrieve"),
           }),
@@ -90,10 +90,19 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
             }
           },
         },
-        // next race info
-        // standings
-        // session finish positions
+        // wip:
+        //
+        // ideas:
+        // race control
         // fastest lap
+        // who is on pole position
+        // next race info
+        // session status (red flags?)
+        //
+        // challenging ideas:
+        // finishing order
+        // standings
+        // current session order
       },
     });
 

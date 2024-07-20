@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
-import { MdOutlineQuestionMark, MdHeadsetMic } from "react-icons/md";
+import { MdHeadsetMic } from "react-icons/md";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { RxLapTimer } from "react-icons/rx";
+import { FaFlagCheckered } from "react-icons/fa";
+import { SiFerrari } from "react-icons/si";
 
 export const title = "PitWall";
 export const description = "PitWall is an AI application driving real-time updates and insights for the latest FORMULA 1 session through an interactive chatbot, redefining the spectator experience.";
@@ -47,22 +49,22 @@ export const cards: { title: string; text: string }[] = [
 export const panel: { question: string; icon: ReactNode }[] = [
   {
     question: "What are the current weather and track conditions?",
-    icon: <TiWeatherPartlySunny className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />,
+    icon: <TiWeatherPartlySunny className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />,
   },
   {
-    question: "What did Charles Leclerc say to his race engineer?",
-    icon: <MdHeadsetMic className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
+    question: "What did Charles Leclerc say over the radio?",
+    icon: <MdHeadsetMic className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
   {
-    question: "Who set the fastest lap and what was the lap time?",
-    icon: <RxLapTimer className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
+    question: "Who set the fastest lap and what was the time?",
+    icon: <RxLapTimer className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
   {
-    question: "Who is the most famous FORMULA 1 driver?",
-    icon: <MdOutlineQuestionMark className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200 " />,
+    question: "When is the next upcoming race?",
+    icon: <FaFlagCheckered className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200 " />,
   },
   {
-    question: "Who is the most famous FORMULA 1 driver?",
-    icon: <MdOutlineQuestionMark className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
+    question: "Who is the most successful FORMULA 1 team?",
+    icon: <SiFerrari className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
 ];

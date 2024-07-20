@@ -67,8 +67,6 @@ type WeatherProperties = {
 };
 
 export const WeatherComponent = ({ weather }: WeatherProperties) => {
-  console.log(weather);
-
   return (
     <div className="w-full mt-2">
       <div className="flex flex-nowrap items-center gap-2">
