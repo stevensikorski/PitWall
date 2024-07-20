@@ -96,7 +96,7 @@ export const PanelButton = ({ question, icon, onClick }: PanelButtonProperties) 
   return (
     <button onClick={onClick} className="py-2 flex justify-between items-center bg-gradient-to-b from-neutral-950 to-black rounded-lg border border-neutral-800 group">
       {icon}
-      <p className="h-full w-full text-left flex items-center text-neutral-700 desktop:group-hover:text-neutral-400 transition-colors duration-200">{question}</p>
+      <p className="h-full w-full tracking-tighter tablet:tracking-normal text-left font-medium flex items-center text-neutral-700 desktop:group-hover:text-neutral-400 transition-colors duration-200">{question}</p>
       <BiSolidChevronRight className="size-5 mx-3 text-neutral-700 desktop:group-hover:text-neutral-400 transition-colors duration-200" />
     </button>
   );

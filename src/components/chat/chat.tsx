@@ -12,7 +12,7 @@ export const Chat = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <div>
+    <section>
       <History>
         {messages.length === 0 && <Panel loading={loading} setLoading={setLoading} />}
         {messages.map((message: ClientMessage) => (
@@ -21,6 +21,6 @@ export const Chat = () => {
         {messages.length > 0 && <div className="h-8 flex-shrink-0" />}
       </History>
       <Input loading={loading} setLoading={setLoading} />
-    </div>
+    </section>
   );
 };
