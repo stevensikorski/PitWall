@@ -18,7 +18,7 @@ export const Chat = () => {
         {messages.map((message: ClientMessage) => (
           <div key={message.id}>{message.role === "user" ? <UserComponent display={message.display}></UserComponent> : <PitWallComponent display={message.display}></PitWallComponent>}</div>
         ))}
-        {messages.length > 0 && <div className="h-8 flex-shrink-0" />}
+        {messages.length > 0 && <div className="h-2 desktop:h-6 flex-shrink-0" />}
       </History>
       <Input loading={loading} setLoading={setLoading} />
     </section>

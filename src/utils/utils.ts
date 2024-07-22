@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment-timezone";
 
 export const fetchWeatherData = async () => {
   try {
@@ -14,6 +15,7 @@ export const fetchWeatherData = async () => {
 
     const data = {
       date: weatherData.date,
+      utc_offset: meetingData.gmt_offset,
       session_name: meetingData.meeting_name,
       session_type: sessionData.session_name,
       location: sessionData.location,
@@ -136,4 +138,43 @@ export const convertISO3166 = (alpha3: string): string => {
   } else {
     return "";
   }
+};
+
+const locationTimezoneMap: { [key: string]: string } = {
+  Sakhir: "Asia/Bahrain",
+  Jeddah: "Asia/Riyadh",
+  Melbourne: "Australia/Melbourne",
+  Baku: "Asia/Baku",
+  Miami: "America/New_York",
+  Monaco: "Europe/Monaco",
+  Barcelona: "Europe/Madrid",
+  Montréal: "America/Toronto",
+  Spielberg: "Europe/Vienna",
+  Silverstone: "Europe/London",
+  Budapest: "Europe/Budapest",
+  "Spa-Francorchamps": "Europe/Brussels",
+  Zandvoort: "Europe/Amsterdam",
+  Monza: "Europe/Rome",
+  "Marina Bay": "Asia/Singapore",
+  Suzuka: "Asia/Tokyo",
+  Lusail: "Asia/Qatar",
+  Austin: "America/Chicago",
+  "Mexico City": "America/Mexico_City",
+  "São Paulo": "America/Sao_Paulo",
+  "Las Vegas": "America/Los_Angeles",
+  "Yas Island": "Asia/Dubai",
+  Shanghai: "Asia/Shanghai",
+  Imola: "Europe/Rome",
+};
+
+export const getTimezone = (location: string): string => {
+  const map = locationTimezoneMap[location];
+  const abbreviation = moment.tz(map).format("z");
+  return abbreviation;
+};
+
+export const getLocalTime = (date: string, location: string): string => {
+  const localDate = locationTimezoneMap[location];
+  const formattedDate = moment.utc(date).tz(localDate).format("YYYY-MM-DDTHH:mm:ss");
+  return formattedDate;
 };

@@ -3,11 +3,12 @@ import { convertTime } from "@/utils/utils";
 import { FaPlay, FaPause } from "react-icons/fa6";
 
 type AudioProperties = {
-  src: string;
   date: string;
+  timezone: string;
+  url: string;
 };
 
-export const AudioPlayer = ({ src, date }: AudioProperties) => {
+export const AudioPlayer = ({ date, timezone, url }: AudioProperties) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -68,9 +69,11 @@ export const AudioPlayer = ({ src, date }: AudioProperties) => {
 
   return (
     <div className="h-auto pb-2">
-      <p className="text-xs text-neutral-700">{convertTime(date)}</p>
+      <p className="text-xs text-neutral-700">
+        {convertTime(date)} ({timezone})
+      </p>
       <div className="h-auto tablet:w-1/2 flex py-1">
-        <audio ref={audioRef} src={src}></audio>
+        <audio ref={audioRef} src={url}></audio>
         <button className="size-8 mx-2 flex justify-center items-center relative outline-none" onClick={handlePlayPause}>
           <FaPlay className={`absolute text-neutral-400 transition-opacity duration-200 ${isPlaying ? "opacity-0" : "opacity-100"}`} />
           <FaPause className={`absolute text-neutral-400 transition-opacity duration-200 ${isPlaying ? "opacity-100" : "opacity-0"}`} />
