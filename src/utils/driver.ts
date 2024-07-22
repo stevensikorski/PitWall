@@ -10,9 +10,9 @@ export const fetchDriverData = async () => {
       last_name: driver.last_name,
       acronym: driver.name_acronym,
       number: driver.driver_number,
-      flag: driver.country_code,
+      country: driver.country_code,
       team_name: driver.team_name,
-      team_color: driver.team_color,
+      team_color: driver.team_colour,
     }));
 
     return data;

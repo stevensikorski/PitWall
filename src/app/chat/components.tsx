@@ -11,17 +11,13 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import { AudioPlayer } from "@/components/ui/audio";
 import { PitWallLogoSmall } from "@/components/ui/logos";
 import { Gauge } from "@/components/ui/gauge";
-import { convertISO3166, getLocalTime, getOfficialTeamName } from "@/utils/utils";
-import { Driver, Weather } from "@/app/chat/schema";
+import { convertISO3166, convertTime, getLocalTime, getOfficialTeamName } from "@/utils/utils";
+import { Weather } from "@/app/chat/schema";
 import { title, error } from "@/constants/constants";
 
-type MessageProperties = {
-  display: ReactNode;
-};
-
-export const UserComponent = ({ display }: MessageProperties) => {
+export const UserComponent = ({ display }: { display: ReactNode }) => {
   return (
-    <div className="flex flex-col justify-start items-end mt-4">
+    <div className="flex flex-col justify-start items-end mt-2">
       <div className="p-2 px-3 z-10 flex max-w-[80%] desktop:max-w-[65%] bg-gradient-to-b from-neutral-950 to-black rounded-lg rounded-br-none border border-neutral-800">
         <p className="flex-grow break-words overflow-hidden">{display}</p>
       </div>
@@ -34,9 +30,9 @@ export const UserComponent = ({ display }: MessageProperties) => {
   );
 };
 
-export const PitWallComponent = ({ display }: MessageProperties) => {
+export const PitWallComponent = ({ display }: { display: ReactNode }) => {
   return (
-    <div className="flex flex-col mt-4">
+    <div className="flex flex-col mt-2">
       <div className="flex gap-2">
         <PitWallLogoSmall />
         <p className="h-4 desktop:h-5 text-center font-semibold text-white uppercase pitwall">{title}</p>
@@ -48,7 +44,7 @@ export const PitWallComponent = ({ display }: MessageProperties) => {
 
 export const LoadingComponent = () => {
   return (
-    <div className="flex w-full pt-2">
+    <div className="flex w-full mt-2">
       <CgSpinner className="animate-spin text-neutral-400 font-bold size-4 desktop:size-5" size={64} />
     </div>
   );
@@ -56,21 +52,17 @@ export const LoadingComponent = () => {
 
 export const ErrorComponent = () => {
   return (
-    <div className="flex w-full pt-2">
+    <div className="flex w-full mt-2">
       <p className="text-red-300 flex-grow break-words overflow-hidden">{error}</p>
     </div>
   );
-};
-
-type WeatherProperties = {
-  weather: Weather;
 };
 
 export const WeatherComponent = ({ weather }: { weather: Weather }) => {
   return (
     <div className="w-full mt-2">
       <div className="flex flex-nowrap items-center gap-2">
-        <ReactCountryFlag countryCode={convertISO3166(weather.flag as string)} svg className="text-xs tablet:text-base" />
+        <ReactCountryFlag countryCode={convertISO3166(weather.country as string)} svg className="text-xs tablet:text-base" />
         <h4 className="font-bold text-neutral-400">{weather.title}</h4>
       </div>
       <p>{weather.date}</p>
@@ -88,27 +80,51 @@ export const WeatherComponent = ({ weather }: { weather: Weather }) => {
   );
 };
 
-type AudioProperties = {
-  date: string;
-  url: string;
-};
-
 export const RadioComponent = ({ info }: { info: any }) => {
   return (
     <div className="w-full mt-2">
       <div className="flex flex-nowrap items-center gap-2">
-        <ReactCountryFlag countryCode={convertISO3166(info.flag as string)} svg className="text-xs tablet:text-base" />
+        <ReactCountryFlag countryCode={convertISO3166(info.country as string)} svg className="text-xs tablet:text-base" />
         <h4 className="font-bold text-neutral-400">{info.name}&apos;s Team Radio</h4>
       </div>
       <p>
         {getOfficialTeamName(info.team_name)} • #{info.number}
       </p>
-      <div className="h-auto max-h-[128px] w-full mt-4 overflow-y-auto scroll-smooth scrollbar relative">
+      <div className="h-auto max-h-[128px] w-full tablet:w-1/2 mt-4 overflow-y-auto scroll-smooth scrollbar relative">
         {info.radio
           .slice()
           .reverse()
-          .map((audio: AudioProperties, index: number) => (
+          .map((audio: { date: string; url: string }, index: number) => (
             <AudioPlayer key={index} date={getLocalTime(audio.date, info.location)} timezone={info.timezone} url={audio.url} />
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export const RaceControlComponent = ({ info, messages }: { info: any; messages: Array<any> }) => {
+  console.log(info);
+
+  return (
+    <div className="w-full mt-2">
+      <div className="flex flex-nowrap items-center gap-2">
+        <ReactCountryFlag countryCode={convertISO3166(info.country as string)} svg className="text-xs tablet:text-base" />
+        <h4 className="font-bold text-neutral-400">{info.title}</h4>
+      </div>
+      <p>Race Control Messages</p>
+      <div className="h-auto max-h-[288px] w-full tablet:w-2/3 mt-4 overflow-y-auto scroll-smooth scrollbar relative">
+        {messages
+          .slice()
+          .reverse()
+          .map((item: any, index: number) => (
+            <div key={index} className={`h-auto py-2 border-neutral-800 ${index != 0 && "border-t"} ${index != messages.length - 1 && "border-b"}`}>
+              <p className="text-xs text-neutral-700">
+                {convertTime(getLocalTime(item.date, info.location))} ({info.timezone})
+              </p>
+              <div className="h-auto w-full flex">
+                <p className="text-neutral-400 text-xs font-semibold truncate">{item.message}</p>
+              </div>
+            </div>
           ))}
       </div>
     </div>

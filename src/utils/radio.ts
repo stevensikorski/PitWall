@@ -13,7 +13,7 @@ export const fetchRadioData = async (number: number) => {
 
     return data;
   } catch (error) {
-    console.error(`Error fetching driver: ${error}`);
+    console.error(`Error fetching radio data: ${error}`);
     throw error;
   }
 };
@@ -23,18 +23,18 @@ export const fetchDriverRadio = async (driver: any) => {
     const session = await fetchSessionData("latest");
 
     const info = {
-      name: driver.object.name,
-      number: driver.object.number,
-      flag: driver.object.flag,
-      team_name: driver.object.team_name,
+      name: driver.name,
+      number: driver.number,
+      country: driver.country,
+      team_name: driver.team_name,
       location: session?.location,
       timezone: session?.timezone,
-      radio: await fetchRadioData(driver.object.number),
+      radio: await fetchRadioData(driver.number),
     };
 
     return info;
   } catch (error) {
-    console.error(`Error fetching driver: ${error}`);
+    console.error(`Error fetching driver radio: ${error}`);
     throw error;
   }
 };

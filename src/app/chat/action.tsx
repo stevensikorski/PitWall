@@ -8,12 +8,14 @@ import { ReactNode } from "react";
 import { z } from "zod";
 
 import { MarkdownText } from "@/components/layout/markdown";
-import { LoadingComponent, ErrorComponent, WeatherComponent, RadioComponent } from "@/app/chat/components";
-import { driverSchema, weatherSchema } from "@/app/chat/schema";
+import { LoadingComponent, ErrorComponent, WeatherComponent, RadioComponent, RaceControlComponent } from "@/app/chat/components";
+import { driverSchema, raceControlSchema, weatherSchema } from "@/app/chat/schema";
 import { system_message } from "@/constants/prompts";
 import { fetchDriverData } from "@/utils/driver";
 import { fetchWeatherData } from "@/utils/weather";
 import { fetchDriverRadio } from "@/utils/radio";
+import { fetchRaceControlData } from "@/utils/racecontrol";
+import { fetchSessionData } from "@/utils/session";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -78,8 +80,8 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
                 schema: driverSchema,
                 prompt: `Find the driver based on the given information: ${details}. List: ${JSON.stringify(data)}`,
               });
-              const info = await fetchDriverRadio(driver);
-              aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(info) }]);
+              aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(driver.object) }]);
+              const info = await fetchDriverRadio(driver.object);
 
               if (info.radio.length === 0) {
                 return <MarkdownText text={`There are no team radio's from ${info.name}.`} />;
@@ -93,16 +95,21 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
           },
         },
         race_control: {
-          description: "",
+          description: "Retrieve the race control transcript of the latest session only if asked. Do not assume or recommend it.",
           parameters: z.object({}),
           generate: async function* () {
             yield <LoadingComponent />;
             try {
-              // get raceRaceControl()
-              // put data into component
-              // no generation needed, but might as well do aiState.done(race control object?)
+              const data = await fetchRaceControlData();
+              const session = await fetchSessionData("latest");
+              const info = await generateObject({
+                model: openai("gpt-4o-mini"),
+                schema: raceControlSchema,
+                prompt: `Please interpet the following data: ${JSON.stringify(session)}`,
+              });
+              aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(info.object) }]);
 
-              return <ErrorComponent />;
+              return <RaceControlComponent info={info.object} messages={data} />;
             } catch (error) {
               console.error(error);
               return <ErrorComponent />;

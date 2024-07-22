@@ -24,7 +24,7 @@ export const Panel = ({ loading, setLoading }: PanelProperties) => {
   };
 
   return (
-    <div className="h-[calc(100dvh-12rem)] desktop:h-[calc(100dvh-11rem)] w-full flex flex-col justify-center items-center">
+    <div className="h-[calc(100dvh-10rem)] desktop:h-[calc(100dvh-11rem)] w-full flex flex-col justify-center items-center">
       <div className="w-full tablet:w-[512px] h-auto p-0 tablet:p-4 flex flex-col items-center tablet:bg-gradient-to-b from-neutral-950 to-black rounded-lg tablet:border border-neutral-800">
         <PitWallLogoLarge />
         <div className="w-full mt-4 gap-2 flex flex-col">

@@ -6,7 +6,7 @@ import { FaFlagCheckered } from "react-icons/fa";
 import { SiFerrari } from "react-icons/si";
 
 export const title = "PitWall";
-export const description = "PitWall is an AI application driving real-time updates and insights for the latest FORMULA 1 session through an interactive chatbot, redefining the spectator experience.";
+export const description = "PitWall is an AI application driving real-time updates and insights for the latest FORMULA 1 session through an interactive chatbot that redefines the spectator experience.";
 export const motto = "AI driven FORMULA 1 insights and live timing updates";
 export const warning = "PitWall is in early development and is prone to mistakes.";
 export const error = "An error has occurred. Please try again later.";

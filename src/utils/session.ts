@@ -34,14 +34,11 @@ export const fetchSessionData = async (key: string) => {
       session_type: sessionData.session_name,
       circuit: meetingData.circuit_short_name,
       location: meetingData.location,
-      country: meetingData.country_name,
-      flag: meetingData.country_code,
+      country: meetingData.country_code,
       date: getLocalTime(meetingData.date_start, meetingData.location),
       timezone: getTimezone(meetingData.location),
       positions: result,
     };
-
-    console.log(data);
 
     return data;
   } catch (error) {

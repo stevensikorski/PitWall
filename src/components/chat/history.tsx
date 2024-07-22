@@ -10,7 +10,7 @@ export const History = ({ children }: any) => {
   }, [children]);
 
   return (
-    <div ref={historyRef} className={"h-[calc(100dvh-10rem)] desktop:h-[calc(100dvh-11rem)] flex flex-col-reverse gap-4 p-4 desktop:p-0 desktop:my-4 overflow-y-auto scroll-smooth scrollbar"}>
+    <div ref={historyRef} className={"h-[calc(100dvh-9rem)] desktop:h-[calc(100dvh-11rem)] flex flex-col-reverse gap-4 p-4 desktop:p-0 desktop:my-4 overflow-y-auto scroll-smooth scrollbar"}>
       <div className="flex-col-reverse">{children}</div>
     </div>
   );

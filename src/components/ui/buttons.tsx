@@ -12,7 +12,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 export const ChatButton = () => {
   return (
-    <Link href={"/chat"} className="size-10 desktop:size-8 mr-3 desktop:mr-2 bg-neutral-950 desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
+    <Link href={"/chat"} className="size-10 desktop:size-8 mr-3 desktop:mr-2 bg-black desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
       <RiChat4Fill className="size-5 text-neutral-400 desktop:group-hover:text-neutral-950 transition duration-200" />
     </Link>
   );
@@ -20,7 +20,7 @@ export const ChatButton = () => {
 
 export const HelpButton = () => {
   return (
-    <Link href={"/help"} className="size-10 desktop:size-8 mr-3 desktop:mr-0 bg-neutral-950 desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
+    <Link href={"/help"} className="size-10 desktop:size-8 mr-3 desktop:mr-0 bg-black desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
       <BsInfoLg className="size-5 text-neutral-400 desktop:group-hover:text-neutral-950 transition duration-200" />
     </Link>
   );
@@ -28,7 +28,7 @@ export const HelpButton = () => {
 
 export const NewChatButton = () => {
   return (
-    <a href={"/chat"} className="size-10 min-w-10 mr-2 bg-neutral-950 desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
+    <a href={"/chat"} className="size-10 min-w-10 mr-2 bg-black desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
       <RiChatNewFill className="size-6 text-neutral-400 desktop:group-hover:text-neutral-950 transition duration-200" />
     </a>
   );
@@ -36,7 +36,7 @@ export const NewChatButton = () => {
 
 export const SubmitButton = ({ loading }: { loading: boolean }) => {
   return (
-    <button disabled={loading} className={`size-10 min-w-10 ml-2 bg-neutral-950 rounded border border-neutral-800 flex justify-center items-center transition duration-200 relative group ${loading ? "bg-white pointer-events-none" : "desktop:hover:bg-white"}`}>
+    <button disabled={loading} className={`size-10 min-w-10 ml-2 bg-black rounded border border-neutral-800 flex justify-center items-center transition duration-200 relative group ${loading ? "bg-white pointer-events-none" : "desktop:hover:bg-white"}`}>
       <div className={`transition-opacity duration-200 ${loading ? "opacity-0" : "opacity-100"}`}>
         <GrReturn className="size-6 text-neutral-400 desktop:group-hover:text-neutral-950 transition-colors duration-200" />
       </div>
@@ -51,7 +51,7 @@ export const LinkedIn = () => {
   return (
     <Link href={linkedin_url} target="_blank" className="ml-4 relative flex items-center justify-center group">
       <FaLinkedin className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
-      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-neutral-950 border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">LinkedIn</p>
+      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">LinkedIn</p>
     </Link>
   );
 };
@@ -60,7 +60,7 @@ export const GitHub = () => {
   return (
     <Link href={github_url} target="_blank" className="ml-4 relative flex items-center justify-center group">
       <FaGithub className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
-      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-neutral-950 border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">GitHub</p>
+      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">GitHub</p>
     </Link>
   );
 };
@@ -69,7 +69,7 @@ export const XTwitter = () => {
   return (
     <Link href={xtwitter_url} target="_blank" className="ml-4 relative flex items-center justify-center group">
       <FaXTwitter className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
-      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-neutral-950 border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">X</p>
+      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">X</p>
     </Link>
   );
 };
@@ -78,7 +78,7 @@ export const BuyMeACoffee = () => {
   return (
     <Link href={buymeacoffee_url} target="_blank" className="ml-4 relative flex items-center justify-center group">
       <SiBuymeacoffee className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
-      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-neutral-950 border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">Buy Me a Coffee</p>
+      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">Buy Me a Coffee</p>
     </Link>
   );
 };

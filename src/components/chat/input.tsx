@@ -43,7 +43,7 @@ export const Input = ({ loading, setLoading }: InputProperties) => {
             }}
             maxLength={characters}
             placeholder="Ask the PitWall..."
-            className="h-10 w-full p-2 pl-3 pr-16 overflow-hidden outline-none text-sm rounded bg-neutral-950 text-neutral-400 placeholder-neutral-700 border border-neutral-800"
+            className="h-10 w-full p-2 pl-3 pr-16 overflow-hidden outline-none text-sm rounded bg-black text-neutral-400 placeholder-neutral-700 border border-neutral-800"
           />
           <div className="absolute top-0 right-0 h-10 flex items-center pr-3 text-xs text-neutral-700">
             {input.length}/{characters}
