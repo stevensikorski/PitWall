@@ -1,7 +1,5 @@
 import axios from "axios";
 
-let cache: any = {};
-
 export const fetchDriverData = async () => {
   try {
     const response = await axios.get(`https://api.openf1.org/v1/drivers?session_key=latest`);
@@ -17,11 +15,9 @@ export const fetchDriverData = async () => {
       team_color: driver.team_color,
     }));
 
-    cache = data;
-
     return data;
   } catch (error) {
     console.error(`Error fetching driver: ${error}`);
-    return cache;
+    throw error;
   }
 };

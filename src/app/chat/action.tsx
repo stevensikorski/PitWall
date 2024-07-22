@@ -13,8 +13,7 @@ import { driverSchema, weatherSchema } from "@/app/chat/schema";
 import { system_message } from "@/constants/prompts";
 import { fetchDriverData } from "@/utils/driver";
 import { fetchWeatherData } from "@/utils/weather";
-import { fetchDriverRadio, fetchRadioData } from "@/utils/radio";
-import { fetchSessionData } from "@/utils/session";
+import { fetchDriverRadio } from "@/utils/radio";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -44,7 +43,7 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
         return <MarkdownText text={content} />;
       },
       tools: {
-        latest_weather: {
+        weather_conditions: {
           description: "Retrieve the latest weather information only if asked. Do not assume or recommend it. Do not ask for a location as it will be found in the data provided.",
           parameters: z.object({}),
           generate: async function* () {
@@ -65,7 +64,7 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
             }
           },
         },
-        latest_radio: {
+        driver_radio: {
           description: "Retrieve the team radio audio of the latest session only if asked. Do not assume or recommend it.",
           parameters: z.object({
             details: z.string().describe("details about a certain driver"),
@@ -74,7 +73,6 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
             yield <LoadingComponent />;
             try {
               const data = await fetchDriverData();
-              const session = await fetchSessionData();
               const driver = await generateObject({
                 model: openai("gpt-4o-mini"),
                 schema: driverSchema,
@@ -87,9 +85,58 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
                 return <MarkdownText text={`There are no team radio's from ${info.name}.`} />;
               }
 
-              console.log(info);
-
               return <RadioComponent info={info} />;
+            } catch (error) {
+              console.error(error);
+              return <ErrorComponent />;
+            }
+          },
+        },
+        race_control: {
+          description: "",
+          parameters: z.object({}),
+          generate: async function* () {
+            yield <LoadingComponent />;
+            try {
+              // get raceRaceControl()
+              // put data into component
+              // no generation needed, but might as well do aiState.done(race control object?)
+
+              return <ErrorComponent />;
+            } catch (error) {
+              console.error(error);
+              return <ErrorComponent />;
+            }
+          },
+        },
+        session_order: {
+          description: "",
+          parameters: z.object({}),
+          generate: async function* () {
+            yield <LoadingComponent />;
+            try {
+              // generate session_id based on getWeekend() specificied (prac, qual, race, etc. let them ask per session of a weekend)
+              // use session_id to get positions[]
+              // put positions into some component
+
+              return <ErrorComponent />;
+            } catch (error) {
+              console.error(error);
+              return <ErrorComponent />;
+            }
+          },
+        },
+        race_podium: {
+          description: "",
+          parameters: z.object({}),
+          generate: async function* () {
+            yield <LoadingComponent />;
+            try {
+              // generate session_id of race based on getWeekend()
+              // use session_id to get positions[], get top 3
+              // put positions into some component
+
+              return <ErrorComponent />;
             } catch (error) {
               console.error(error);
               return <ErrorComponent />;
@@ -98,25 +145,26 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
         },
         // next:
         // race control
+        // finishing/current session order
+        // race podium
         //
         // ideas:
-        // session status (red flags?)
+        // who is on pole position
+        // who is the race winner? (or just do podium only?)
+        // fastest lap
+        // session status (red flags? check race control basically for flag param)
         // compare lap times between 2 drivers
         // stint monitor
-        // who is on pole position
-        // fastest lap
+        // strategy review (if race, check pit stop laps, and what compound/stint)
         //
         // challenging ideas:
-        // schedule (https://api.openf1.org/v1/sessions?meeting_key=latest)
-        // next race info
-        // track map
-        // list of winners or podium for all meetings/grandprix
+        // schedule (https://api.openf1.org/v1/sessions?meeting_key=latest, might be past sessions only)
+        // next race info (probably hard code weekends and their session start times)
         //
         // bad ideas:
-        // standings
-        // current session order
-        // finishing/current session order
-        // starting grid
+        // track map
+        // driver / constructors standings
+        // list of winners or podium for all meetings/grandprix
       },
     });
 

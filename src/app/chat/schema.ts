@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const weatherSchema = z.object({
   date: z.string().describe("Day of the Week, Month DD, YYYY @ HH:MM (TIMEZONE)"),
-  title: z.string().describe("Please format as: [year] [session_name] ([session_type]) at [location]"),
+  title: z.string().describe("Please format as: [year] [session_name] ([session_type]) at [circuit]"),
   flag: z.string().describe("The country's flag without any modifications."),
   rainfall: z.number().describe("Whether there is rainfall, a value of 0 or 1."),
   rain_risk: z.number().describe("The risk of rain. Provide it as an integer."),

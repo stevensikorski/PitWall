@@ -2,8 +2,6 @@ import axios from "axios";
 import { fetchSessionData } from "@/utils/session";
 import { getLocalTime } from "@/utils/utils";
 
-let cache: any = {};
-
 export const fetchWeatherData = async () => {
   try {
     const weatherResponse = await axios.get(`https://api.openf1.org/v1/weather?session_key=latest`);
@@ -12,13 +10,14 @@ export const fetchWeatherData = async () => {
     const controlResponse = await axios.get(`https://api.openf1.org/v1/race_control?session_key=latest&category=Other`);
     const controlData = controlResponse.data.find((event: { message: string }) => event.message.toLowerCase().includes("rain")) || [{ message: "RISK OF RAIN FOR F1 SESSION IS 0%" }];
 
-    const sessionData = await fetchSessionData();
+    const sessionData = await fetchSessionData("latest");
 
     const data = {
       date: getLocalTime(weatherData.date, sessionData?.location),
       timezone: sessionData?.timezone,
       session_name: sessionData?.session_name,
       session_type: sessionData?.session_type,
+      circuit: sessionData?.circuit,
       location: sessionData?.location,
       flag: sessionData?.flag,
       rainfall: weatherData.rainfall,
@@ -31,11 +30,9 @@ export const fetchWeatherData = async () => {
       pressure: weatherData.pressure,
     };
 
-    cache = data;
-
     return data;
   } catch (error) {
     console.error(`Error fetching weather: ${error}`);
-    return cache;
+    throw error;
   }
 };

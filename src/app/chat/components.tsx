@@ -11,7 +11,7 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import { AudioPlayer } from "@/components/ui/audio";
 import { PitWallLogoSmall } from "@/components/ui/logos";
 import { Gauge } from "@/components/ui/gauge";
-import { convertISO3166, getLocalTime } from "@/utils/utils";
+import { convertISO3166, getLocalTime, getOfficialTeamName } from "@/utils/utils";
 import { Driver, Weather } from "@/app/chat/schema";
 import { title, error } from "@/constants/constants";
 
@@ -101,7 +101,7 @@ export const RadioComponent = ({ info }: { info: any }) => {
         <h4 className="font-bold text-neutral-400">{info.name}&apos;s Team Radio</h4>
       </div>
       <p>
-        {info.team_name} • #{info.number}
+        {getOfficialTeamName(info.team_name)} • #{info.number}
       </p>
       <div className="h-auto max-h-[128px] w-full mt-4 overflow-y-auto scroll-smooth scrollbar relative">
         {info.radio

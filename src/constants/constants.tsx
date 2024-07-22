@@ -60,7 +60,7 @@ export const panel: { question: string; icon: ReactNode }[] = [
     icon: <RxLapTimer className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200" />,
   },
   {
-    question: "When is the next upcoming race?",
+    question: "What's the latest news from race control?",
     icon: <FaFlagCheckered className="size-5 mr-3 text-neutral-700 desktop:group-hover:text-neutral-400  transition duration-200 " />,
   },
   {
