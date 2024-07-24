@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const fetchDriverData = async () => {
+export const fetchDriverData = async (session: string) => {
   try {
-    const response = await axios.get(`https://api.openf1.org/v1/drivers?session_key=latest`);
+    const response = await axios.get(`https://api.openf1.org/v1/drivers?session_key=${session}`);
     const driverData = await response.data;
 
     const data = driverData.map((driver: any) => ({

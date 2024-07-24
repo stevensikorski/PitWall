@@ -22,7 +22,7 @@ export default function HomePage() {
       <h3>Features</h3>
       <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4 mt-4">
         {cards.map((item, index) => (
-          <Card key={index} title={item.title} text={item.text} />
+          <Card key={index} title={item.title} display={item.display} />
         ))}
       </div>
       <hr></hr>

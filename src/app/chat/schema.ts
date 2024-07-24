@@ -24,7 +24,7 @@ export const driverSchema = z.object({
   team_color: z.string().describe("Hexadecimal color value."),
 });
 
-export const raceControlSchema = z.object({
+export const sessionSchema = z.object({
   date: z.string().describe("Day of the Week, Month DD, YYYY @ HH:MM (TIMEZONE)"),
   timezone: z.string().describe("The timezone abbreviation without any modifications."),
   title: z.string().describe("Please format as: [year] [session_name] ([session_type]) at [circuit]"),
@@ -34,3 +34,4 @@ export const raceControlSchema = z.object({
 
 export type Weather = DeepPartial<typeof weatherSchema>;
 export type Driver = DeepPartial<typeof driverSchema>;
+export type Session = DeepPartial<typeof sessionSchema>;

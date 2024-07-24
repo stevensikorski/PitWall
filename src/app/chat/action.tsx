@@ -8,14 +8,14 @@ import { ReactNode } from "react";
 import { z } from "zod";
 
 import { MarkdownText } from "@/components/layout/markdown";
-import { LoadingComponent, ErrorComponent, WeatherComponent, RadioComponent, RaceControlComponent } from "@/app/chat/components";
-import { driverSchema, raceControlSchema, weatherSchema } from "@/app/chat/schema";
+import { LoadingComponent, ErrorComponent, WeatherComponent, RadioComponent, RaceControlComponent, SessionComponent } from "@/app/chat/components";
+import { driverSchema, sessionSchema, weatherSchema } from "@/app/chat/schema";
 import { system_message } from "@/constants/prompts";
 import { fetchDriverData } from "@/utils/driver";
 import { fetchWeatherData } from "@/utils/weather";
 import { fetchDriverRadio } from "@/utils/radio";
 import { fetchRaceControlData } from "@/utils/racecontrol";
-import { fetchSessionData } from "@/utils/session";
+import { fetchPositionData, fetchSessionData, fetchSessionKey } from "@/utils/session";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -67,18 +67,18 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
           },
         },
         driver_radio: {
-          description: "Retrieve the team radio audio of the latest session only if asked. Do not assume or recommend it.",
+          description: "Retrieve the team radio audio of the latest session only if asked. Do not assume or recommend it. If a driver is not mentioned, ask a clarifying question.",
           parameters: z.object({
-            details: z.string().describe("details about a certain driver"),
+            driver_details: z.string().describe("Details about a certain driver"),
           }),
-          generate: async function* ({ details }) {
+          generate: async function* ({ driver_details }) {
             yield <LoadingComponent />;
             try {
-              const data = await fetchDriverData();
+              const data = await fetchDriverData("latest");
               const driver = await generateObject({
                 model: openai("gpt-4o-mini"),
                 schema: driverSchema,
-                prompt: `Find the driver based on the given information: ${details}. List: ${JSON.stringify(data)}`,
+                prompt: `Find the driver based on the given information: ${driver_details}. List: ${JSON.stringify(data)}`,
               });
               aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(driver.object) }]);
               const info = await fetchDriverRadio(driver.object);
@@ -104,7 +104,7 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
               const session = await fetchSessionData("latest");
               const info = await generateObject({
                 model: openai("gpt-4o-mini"),
-                schema: raceControlSchema,
+                schema: sessionSchema,
                 prompt: `Please interpet the following data: ${JSON.stringify(session)}`,
               });
               aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(info.object) }]);
@@ -117,33 +117,28 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
           },
         },
         session_order: {
-          description: "",
-          parameters: z.object({}),
-          generate: async function* () {
+          description: "Retrieve the driver order of a session specified by the user only if asked. If a user asks about pole position or podium, you may provide full session details. Do not assume or recommend it.",
+          parameters: z.object({
+            session_name: z.string().describe("The session order asked about, these are the only options: Practice 1, Practice 2, Practice 3, Sprint Qualifying, Sprint, Qualifying, Race."),
+          }),
+          generate: async function* ({ session_name }) {
             yield <LoadingComponent />;
             try {
-              // generate session_id based on getWeekend() specificied (prac, qual, race, etc. let them ask per session of a weekend)
-              // use session_id to get positions[]
-              // put positions into some component
+              const key = await fetchSessionKey(session_name);
+              const session = await fetchSessionData(key);
+              const positions = await fetchPositionData(key);
+              const info = await generateObject({
+                model: openai("gpt-4o-mini"),
+                schema: sessionSchema,
+                prompt: `Please interpet the following data: ${JSON.stringify(session)}`,
+              });
 
-              return <ErrorComponent />;
-            } catch (error) {
-              console.error(error);
-              return <ErrorComponent />;
-            }
-          },
-        },
-        race_podium: {
-          description: "",
-          parameters: z.object({}),
-          generate: async function* () {
-            yield <LoadingComponent />;
-            try {
-              // generate session_id of race based on getWeekend()
-              // use session_id to get positions[], get top 3
-              // put positions into some component
+              aiState.done((messages: ServerMessage[]) => [...messages, { role: "assistant", content: JSON.stringify(info.object) }]);
+              if (Object.keys(session).length === 0) {
+                return <MarkdownText text={`${session_name} has not occurred. Please ask about another session.`} />;
+              }
 
-              return <ErrorComponent />;
+              return <SessionComponent info={info.object} positions={positions} session={session_name} session_id={key} />;
             } catch (error) {
               console.error(error);
               return <ErrorComponent />;
@@ -156,11 +151,9 @@ export async function submitUserMessage(input: string): Promise<ClientMessage> {
         // race podium
         //
         // ideas:
-        // who is on pole position
-        // who is the race winner? (or just do podium only?)
-        // fastest lap
+        // fastest lap (get session id from weekend)
         // session status (red flags? check race control basically for flag param)
-        // compare lap times between 2 drivers
+        // compare lap times between 2 222drivers
         // stint monitor
         // strategy review (if race, check pit stop laps, and what compound/stint)
         //
