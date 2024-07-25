@@ -22,7 +22,7 @@ export const fetchSessionData = async (key: string) => {
     return data;
   } catch (error) {
     console.error(`Error fetching session: ${error}`);
-    return [];
+    throw error;
   }
 };
 

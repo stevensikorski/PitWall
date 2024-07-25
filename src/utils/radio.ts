@@ -27,8 +27,8 @@ export const fetchDriverRadio = async (driver: any) => {
       number: driver.number,
       country: driver.country,
       team_name: driver.team_name,
-      location: session?.location,
-      timezone: session?.timezone,
+      location: session.location,
+      timezone: session.timezone,
       radio: await fetchRadioData(driver.number),
     };
 

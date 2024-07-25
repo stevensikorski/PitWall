@@ -7,7 +7,6 @@ import { IoRainy } from "react-icons/io5";
 import { MdAir } from "react-icons/md";
 import { WiBarometer, WiHumidity } from "react-icons/wi";
 import { FaArrowUpLong } from "react-icons/fa6";
-import { RxLapTimer } from "react-icons/rx";
 
 import { AudioPlayer } from "@/components/ui/audio";
 import { PitWallLogoSmall } from "@/components/ui/logos";
@@ -91,7 +90,7 @@ export const RadioComponent = ({ info }: { info: any }) => {
         <h4 className="font-bold text-neutral-400">{info.name}&apos;s Team Radio</h4>
       </div>
       <p>
-        {getOfficialTeamName(info.team_name)} • #{info.number}
+        {getOfficialTeamName(info.team_name)} • {info.number}
       </p>
       <div className="h-auto max-h-[128px] w-full tablet:w-1/2 my-4 overflow-y-auto scroll-smooth scrollbar relative">
         {info.radio
@@ -156,7 +155,7 @@ export const SessionComponent = async ({ info, positions, session, session_id }:
               const driverData = data.find((item: any) => driver.number === item.number);
               return (
                 <div key={driver.number} className="h-6 w-full flex px-2 gap-2">
-                  <p className="h-full flex-[1] flex justify-center items-center truncate">{driver.position}</p>
+                  <p className="h-full flex-[1] flex justify-center items-center truncate">P{driver.position}</p>
                   <p className="h-full flex-[2] tablet:flex-[4] flex justify-start items-center truncate">
                     {driverData.first_name} {driverData.last_name}
                   </p>
