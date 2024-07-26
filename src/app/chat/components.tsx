@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { unstable_noStore as noStore } from "next/cache";
 import { ReactCountryFlag } from "react-country-flag";
 import { CgSpinner } from "react-icons/cg";
 import { IoRainy } from "react-icons/io5";
@@ -19,6 +20,7 @@ import { fetchSessionFinish } from "@/utils/session";
 
 export const UserComponent = ({ display }: { display: ReactNode }) => {
   "use client";
+  noStore();
   return (
     <div className="flex flex-col justify-start items-end mt-2 mb-2">
       <div className="p-2 px-3 z-10 flex max-w-[80%] desktop:max-w-[65%] bg-gradient-to-b from-neutral-950 to-black rounded-lg rounded-br-none border border-neutral-800">
@@ -35,6 +37,7 @@ export const UserComponent = ({ display }: { display: ReactNode }) => {
 
 export const PitWallComponent = ({ display }: { display: ReactNode }) => {
   "use client";
+  noStore();
   return (
     <div className="flex flex-col mt-2 mb-2">
       <div className="flex gap-2">
@@ -48,6 +51,7 @@ export const PitWallComponent = ({ display }: { display: ReactNode }) => {
 
 export const LoadingComponent = () => {
   "use client";
+  noStore();
   return (
     <div className="flex w-full mt-2 mb-2">
       <CgSpinner className="animate-spin text-neutral-400 font-bold size-4 desktop:size-5" size={64} />
@@ -57,6 +61,7 @@ export const LoadingComponent = () => {
 
 export const ErrorComponent = () => {
   "use client";
+  noStore();
   return (
     <div className="flex w-full mt-2 mb-2">
       <p className="text-red-300 flex-grow break-words overflow-hidden">{error}</p>
@@ -66,6 +71,7 @@ export const ErrorComponent = () => {
 
 export const WeatherComponent = ({ weather }: { weather: Weather }) => {
   "use client";
+  noStore();
   return (
     <div className="w-full mt-2 mb-2">
       <div className="flex flex-nowrap items-center gap-2">
@@ -89,6 +95,7 @@ export const WeatherComponent = ({ weather }: { weather: Weather }) => {
 
 export const RadioComponent = ({ info }: { info: any }) => {
   "use client";
+  noStore();
   return (
     <div className="w-full mt-2 mb-2">
       <div className="flex flex-nowrap items-center gap-2">
@@ -112,6 +119,7 @@ export const RadioComponent = ({ info }: { info: any }) => {
 
 export const RaceControlComponent = ({ info, messages }: { info: Session; messages: Array<any> }) => {
   "use client";
+  noStore();
   return (
     <div className="w-full mt-2 mb-2">
       <div className="flex flex-nowrap items-center gap-2">
@@ -140,6 +148,7 @@ export const RaceControlComponent = ({ info, messages }: { info: Session; messag
 
 export const SessionComponent = async ({ info, positions, session, session_id }: { info: Session; positions: any; session: string; session_id: string }) => {
   "use client";
+  noStore();
   const data = await fetchDriverData(session_id);
   const sessionFinished = await fetchSessionFinish(session_id, session);
 
