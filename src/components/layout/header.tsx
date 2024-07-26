@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PitWallLogo } from "@/components/ui/logos";
 import { Navbar } from "@/components/layout/navbar";
-import { ChatButton, HelpButton } from "@/components/ui/buttons";
+import { ChatButton, InfoButton } from "@/components/ui/buttons";
 import { title } from "@/constants/constants";
 
 export const Header = () => {
@@ -14,7 +14,7 @@ export const Header = () => {
         </Link>
         <div className="flex">
           <ChatButton />
-          <HelpButton />
+          <InfoButton />
         </div>
       </Navbar>
     </header>

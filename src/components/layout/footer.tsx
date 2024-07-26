@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { LinkedIn, GitHub, XTwitter, BuyMeACoffee } from "@/components/ui/buttons";
+import { LinkedIn, GitHub, Portfolio, XTwitter, BuyMeACoffee } from "@/components/ui/buttons";
 import { copyright, disclaimer } from "@/constants/constants";
 
 export const Footer = () => {
@@ -16,8 +16,9 @@ export const Footer = () => {
         <div className="flex">
           <LinkedIn />
           <GitHub />
-          <XTwitter />
-          <BuyMeACoffee />
+          <Portfolio />
+          {/* <XTwitter /> */}
+          {/* <BuyMeACoffee /> */}
         </div>
       </div>
       <p className="text-sm text-neutral-700 text-justify">{disclaimer}</p>

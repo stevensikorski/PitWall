@@ -6,9 +6,12 @@ import { RiChat4Fill, RiChatNewFill } from "react-icons/ri";
 import { GrReturn } from "react-icons/gr";
 import { SiBuymeacoffee } from "react-icons/si";
 import { BsInfoLg } from "react-icons/bs";
-import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url } from "@/constants/constants";
+import { linkedin_url, github_url, buymeacoffee_url, xtwitter_url, portfolio_url } from "@/constants/constants";
 import { BiSolidChevronRight } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineQuestionMark } from "react-icons/md";
+import { FaFolder } from "react-icons/fa";
+import { PiAppWindowFill } from "react-icons/pi";
 
 export const ChatButton = () => {
   return (
@@ -18,9 +21,9 @@ export const ChatButton = () => {
   );
 };
 
-export const HelpButton = () => {
+export const InfoButton = () => {
   return (
-    <Link href={"/help"} className="size-10 desktop:size-8 mr-3 desktop:mr-0 bg-black desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
+    <Link href={"/info"} className="size-10 desktop:size-8 mr-3 desktop:mr-0 bg-black desktop:hover:bg-white rounded border border-neutral-800 flex justify-center items-center transition duration-200 group">
       <BsInfoLg className="size-5 text-neutral-400 desktop:group-hover:text-neutral-950 transition duration-200" />
     </Link>
   );
@@ -44,6 +47,15 @@ export const SubmitButton = ({ loading }: { loading: boolean }) => {
         <CgSpinner className="animate-spin text-neutral-950" size={24} />
       </div>
     </button>
+  );
+};
+
+export const Portfolio = () => {
+  return (
+    <Link href={portfolio_url} target="_blank" className="ml-4 relative flex items-center justify-center group">
+      <PiAppWindowFill className="size-4 desktop:size-5 text-neutral-700 desktop:group-hover:text-neutral-400 transition duration-200" />
+      <p className="w-max mb-2 px-2 py-0.5 bottom-full text-center rounded absolute pointer-events-none hidden desktop:flex bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 opacity-0 desktop:group-hover:opacity-100 transition duration-200">Portfolio</p>
+    </Link>
   );
 };
 
