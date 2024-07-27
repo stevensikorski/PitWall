@@ -1,5 +1,16 @@
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import { getTimezone, getLocalTime } from "@/utils/utils";
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: (retryCount) => {
+    return retryCount * 2000;
+  },
+  retryCondition: (error) => {
+    return !!error.response && error.response.status === 429;
+  },
+});
 
 export const fetchSessionData = async (key: string) => {
   try {

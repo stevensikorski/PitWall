@@ -1,13 +1,20 @@
 import axios from "axios";
-import { fetchSessionData } from "@/utils/session";
-import { getLocalTime } from "@/utils/utils";
+import axiosRetry from "axios-retry";
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: (retryCount) => {
+    return retryCount * 2000;
+  },
+  retryCondition: (error) => {
+    return !!error.response && error.response.status === 429;
+  },
+});
 
 export const fetchRaceControlData = async () => {
   try {
     const raceControlResponse = await axios.get(`https://api.openf1.org/v1/race_control?session_key=latest`);
     const raceControlData = raceControlResponse.data;
-
-    const sessionData = await fetchSessionData("latest");
 
     const data = raceControlData.map((message: any) => ({
       date: message.date,

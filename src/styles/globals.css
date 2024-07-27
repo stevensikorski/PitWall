@@ -14,12 +14,6 @@ html {
   transform: skew(-26deg);
 }
 
-.background {
-  background-image: radial-gradient(#0f0f0f 1px, transparent 1px), radial-gradient(#0f0f0f 1px, transparent 1px);
-  background-size: 16px 16px;
-  background-position: 0 0, 8px 8px;
-}
-
 h1 {
   @apply text-3xl tablet:text-5xl text-white font-bold;
 }

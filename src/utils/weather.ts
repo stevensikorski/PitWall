@@ -1,6 +1,17 @@
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import { fetchSessionData } from "@/utils/session";
 import { getLocalTime } from "@/utils/utils";
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: (retryCount) => {
+    return retryCount * 1000;
+  },
+  retryCondition: (error) => {
+    return !!error.response && error.response.status === 429;
+  },
+});
 
 export const fetchWeatherData = async () => {
   try {
