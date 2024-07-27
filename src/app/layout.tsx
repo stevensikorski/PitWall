@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-neutral-950 border-t border-neutral-800 background ${GeistSans.className}`}>
+      <body className={`bg-neutral-950 border-t border-neutral-800 ${GeistSans.className}`}>
         <div className="absolute top-0 -z-50 pointer-events-none h-[100dvh] w-screen overflow-hidden bg-[radial-gradient(ellipse_300%_100%_at_50%_-0%,rgba(0,0,0,1),rgba(0,0,0,0))]"></div>
         <Header />
         {children}
