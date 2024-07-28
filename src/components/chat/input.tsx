@@ -32,7 +32,7 @@ export const Input = ({ loading, setLoading }: InputProperties) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="h-24 tablet:h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
+    <form onSubmit={handleSubmit} className="h-20 w-full p-2 bg-gradient-to-b from-black to-neutral-950 border-t tablet:border border-neutral-800 tablet:rounded-lg mx-auto tablet:max-w-screen-tablet desktop:max-w-screen-desktop">
       <div className="h-10 flex justify-center items-center">
         <NewChatButton />
         <div className="relative flex-grow">
@@ -51,7 +51,7 @@ export const Input = ({ loading, setLoading }: InputProperties) => {
         </div>
         <SubmitButton loading={loading} />
       </div>
-      <p className="mt-1.5 text-xs text-center text-neutral-700">{warning}</p>
+      <p className="mt-1.5 text-[10px] tablet:text-xs text-center text-neutral-700">{warning}</p>
     </form>
   );
 };
